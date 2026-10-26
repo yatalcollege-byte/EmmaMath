@@ -14,7 +14,7 @@
 <style>
 :root{--pink:#f8c9e4;--pink2:#ffeaf6;--pink3:#d96db0;--purple:#9874d7;--ink:#62496f;--muted:#947d9c;--mint:#d9f5df;--yellow:#fff0bb;--white:#fff}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:ui-rounded,"Arial Rounded MT Bold",system-ui,-apple-system,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,#fff 0 3%,transparent 24%),linear-gradient(145deg,#fff5fb,#f5efff 55%,#eefaff);padding:env(safe-area-inset-top) 14px env(safe-area-inset-bottom)}
-button{font:inherit;cursor:pointer;border:0;touch-action:manipulation}button:focus-visible{outline:3px solid #8862ca;outline-offset:3px}.app{max-width:620px;margin:0 auto;padding:14px 0 26px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:4px 2px 16px}.brand{display:flex;align-items:center;gap:10px}.logo{font-size:38px;filter:drop-shadow(0 4px 2px #dca8d2)}h1{font-size:clamp(22px,6vw,30px);margin:0;color:#b34d96;letter-spacing:-.6px}.subtitle{color:var(--muted);font-size:13px;margin-top:3px}.pill{background:#fff;border:1px solid #f2dced;border-radius:18px;padding:8px 12px;font-weight:800;white-space:nowrap;box-shadow:0 3px 10px #e6d4e9}.hero,.panel{background:#ffffffd9;border:1px solid #f4ddef;border-radius:26px;padding:18px;box-shadow:0 8px 24px #d8b9df30;margin-bottom:14px}.hero{text-align:center;background:linear-gradient(135deg,#ffe3f2,#f0e8ff);overflow:hidden;position:relative}.hero h2{margin:0 0 5px;font-size:23px;color:#a34d91}.hero p{margin:0;color:#8e6d96;font-size:14px}.mascots{display:flex;justify-content:center;gap:8px;margin:15px 0 7px}.mascot{width:58px;height:58px;border-radius:20px;background:#ffffffc9;display:grid;place-items:center;font-size:34px;box-shadow:0 4px 0 #e9c9e5;transform:rotate(var(--r,0deg))}.mascot:nth-child(2){--r:4deg}.mascot:nth-child(3){--r:-4deg}.mascot:nth-child(4){--r:3deg}.btn{border-radius:17px;padding:13px 16px;font-weight:850;transition:transform .12s,filter .12s}.btn:active{transform:scale(.97)}.primary{background:linear-gradient(135deg,#e77cbd,#b18be9);color:#fff;box-shadow:0 5px 0 #c15ca5}.secondary{background:#fff0fa;color:#a34d91;border:1px solid #f1d2e8}.wide{width:100%}.row{display:flex;gap:9px;align-items:center}.row>*{flex:1}.section-title{font-size:18px;font-weight:900;margin:0 0 12px}.tables{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.table-btn{border-radius:17px;background:#fff7fc;border:2px solid #f3d8eb;padding:12px 5px;color:#8d5c98;font-weight:850}.table-btn small{display:block;font-size:11px;font-weight:600;margin-top:4px;color:#b18aad}.table-btn.active{background:#f4eaff;border-color:#b28de5;color:#7652b2}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.stat{background:#fff;border-radius:17px;padding:12px 5px;text-align:center;border:1px solid #f5e2ef}.stat strong{display:block;font-size:21px;color:#bd6aa9}.stat span{font-size:11px;color:var(--muted)}.progress{height:9px;background:#f1e1f0;border-radius:99px;overflow:hidden;margin:8px 0 14px}.progress>div{height:100%;background:linear-gradient(90deg,#e77cbd,#9e8be7);width:0;transition:width .3s}.question{font-size:clamp(36px,10vw,54px);font-weight:950;color:#a34d91;margin:15px 0 4px;direction:ltr}.answers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 12px}.answer{background:#fff1fa;border:2px solid #f1d5e9;border-radius:19px;padding:16px 4px;font-size:25px;font-weight:900;color:#8c5a9d;min-height:64px}.answer.correct{background:#dff8e6;border-color:#82d39b;color:#277747}.answer.wrong{background:#ffe4e8;border-color:#f19aaa;color:#a83f63}.feedback{padding:12px;border-radius:16px;text-align:center;font-weight:800;margin:10px 0}.hidden{display:none!important}.collection{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.toy{background:#fff6fb;border:1px solid #f2dced;border-radius:17px;text-align:center;padding:12px 3px;min-height:94px}.toy .emoji{font-size:32px;display:block}.toy small{display:block;font-size:11px;color:#9b7ca1;margin-top:5px}.toy.locked{filter:grayscale(1);opacity:.5;background:#f6f2f5}.footer{text-align:center;color:#a58da8;font-size:11px;padding:10px}.tiny{font-size:12px;color:var(--muted);line-height:1.5}.badge{display:inline-block;background:#fff0bd;color:#9b7122;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:800}.top-actions{display:flex;gap:7px;align-items:center}.iconbtn{border-radius:50%;width:40px;height:40px;background:#fff;border:1px solid #f1dced;color:#a34d91;font-size:18px}.install-note{background:#fff8d9;border-radius:14px;padding:11px;font-size:12px;color:#876b32;margin-top:10px;line-height:1.5}
+button{font:inherit;cursor:pointer;border:0;touch-action:manipulation}button:focus-visible{outline:3px solid #8862ca;outline-offset:3px}.app{max-width:620px;margin:0 auto;padding:14px 0 26px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:4px 2px 16px}.brand{display:flex;align-items:center;gap:10px}.logo{font-size:38px;filter:drop-shadow(0 4px 2px #dca8d2)}h1{font-size:clamp(22px,6vw,30px);margin:0;color:#b34d96;letter-spacing:-.6px}.subtitle{color:var(--muted);font-size:13px;margin-top:3px}.pill{background:#fff;border:1px solid #f2dced;border-radius:18px;padding:8px 12px;font-weight:800;white-space:nowrap;box-shadow:0 3px 10px #e6d4e9}.hero,.panel{background:#ffffffd9;border:1px solid #f4ddef;border-radius:26px;padding:18px;box-shadow:0 8px 24px #d8b9df30;margin-bottom:14px}.hero{text-align:center;background:linear-gradient(135deg,#ffe3f2,#f0e8ff);overflow:hidden;position:relative}.hero h2{margin:0 0 5px;font-size:23px;color:#a34d91}.hero p{margin:0;color:#8e6d96;font-size:14px}.mascots{display:flex;justify-content:center;gap:8px;margin:15px 0 7px}.mascot{width:58px;height:58px;border-radius:20px;background:#ffffffc9;display:grid;place-items:center;font-size:34px;box-shadow:0 4px 0 #e9c9e5;transform:rotate(var(--r,0deg))}.mascot:nth-child(2){--r:4deg}.mascot:nth-child(3){--r:-4deg}.mascot:nth-child(4){--r:3deg}.btn{border-radius:17px;padding:13px 16px;font-weight:850;transition:transform .12s,filter .12s}.btn:active{transform:scale(.97)}.primary{background:linear-gradient(135deg,#e77cbd,#b18be9);color:#fff;box-shadow:0 5px 0 #c15ca5}.secondary{background:#fff0fa;color:#a34d91;border:1px solid #f1d2e8}.wide{width:100%}.row{display:flex;gap:9px;align-items:center}.row>*{flex:1}.section-title{font-size:18px;font-weight:900;margin:0 0 12px}.tables{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.table-btn{border-radius:17px;background:#fff7fc;border:2px solid #f3d8eb;padding:12px 5px;color:#8d5c98;font-weight:850}.table-btn small{display:block;font-size:11px;font-weight:600;margin-top:4px;color:#b18aad}.table-btn.active{background:#f4eaff;border-color:#b28de5;color:#7652b2}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.stat{background:#fff;border-radius:17px;padding:12px 5px;text-align:center;border:1px solid #f5e2ef}.stat strong{display:block;font-size:21px;color:#bd6aa9}.stat span{font-size:11px;color:var(--muted)}.progress{height:9px;background:#f1e1f0;border-radius:99px;overflow:hidden;margin:8px 0 14px}.progress>div{height:100%;background:linear-gradient(90deg,#e77cbd,#9e8be7);width:0;transition:width .3s}.question{font-size:clamp(36px,10vw,54px);font-weight:950;color:#a34d91;margin:15px 0 4px;direction:ltr}.answers{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:18px 0 12px}.answer{background:#fff1fa;border:2px solid #f1d5e9;border-radius:16px;padding:13px 2px;font-size:clamp(18px,5vw,25px);font-weight:900;color:#8c5a9d;min-height:60px}.answer.correct{background:#dff8e6;border-color:#82d39b;color:#277747}.answer.wrong{background:#ffe4e8;border-color:#f19aaa;color:#a83f63}.feedback{padding:12px;border-radius:16px;text-align:center;font-weight:800;margin:10px 0}.hidden{display:none!important}.collection{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.toy{background:#fff6fb;border:1px solid #f2dced;border-radius:17px;text-align:center;padding:12px 3px;min-height:94px}.toy .emoji{font-size:32px;display:block}.toy small{display:block;font-size:11px;color:#9b7ca1;margin-top:5px}.toy.locked{filter:grayscale(1);opacity:.5;background:#f6f2f5}.footer{text-align:center;color:#a58da8;font-size:11px;padding:10px}.tiny{font-size:12px;color:var(--muted);line-height:1.5}.badge{display:inline-block;background:#fff0bd;color:#9b7122;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:800}.top-actions{display:flex;gap:7px;align-items:center}.iconbtn{border-radius:50%;width:40px;height:40px;background:#fff;border:1px solid #f1dced;color:#a34d91;font-size:18px}.install-note{background:#fff8d9;border-radius:14px;padding:11px;font-size:12px;color:#876b32;margin-top:10px;line-height:1.5}
 @media(min-width:500px){.tables{grid-template-columns:repeat(5,1fr)}.hero,.panel{padding:22px}.mascot{width:66px;height:66px;font-size:38px}}
 </style>
 </head>
@@ -28,21 +28,21 @@ button{font:inherit;cursor:pointer;border:0;touch-action:manipulation}button:foc
 <main id="homeScreen">
   <section class="hero">
     <h2>היי אמה, מוכנה לשחק? 🌈</h2>
-    <p>לומדים לוח כפל, אוספים סקווישים ומגלים הפתעות!</p>
+    <p>מתרגלים כפל וחילוק, אוספים סקווישים ומגלים הפתעות!</p>
     <div class="mascots"><div class="mascot">🍓</div><div class="mascot">🐸</div><div class="mascot">🍡</div><div class="mascot">🦄</div></div>
     <div class="row"><button class="btn primary wide" id="startBtn">יאללה, מתחילים! ✨</button></div>
   </section>
   <section class="panel">
     <h3 class="section-title">המסע שלי 🗺️</h3>
     <div class="stats">
-      <div class="stat"><strong id="starsStat">0</strong><span>כוכבים ⭐</span></div>
+      <div class="stat"><strong id="starsStat">0</strong><span>מטבעות ⭐</span></div>
       <div class="stat"><strong id="learnedStat">0/9</strong><span>לוחות בתרגול</span></div>
       <div class="stat"><strong id="toysStat">0</strong><span>סקווישים</span></div>
     </div>
     <div class="tiny">כל תרגול קטן עוזר לזכור טוב יותר. מתקדמים בקצב שלך — בלי לחץ ובלי שעון 💕</div>
   </section>
   <section class="panel">
-    <h3 class="section-title">באיזה לוח נשחק היום?</h3>
+    <h3 class="section-title">באיזה לוח נתרגל היום?</h3>
     <div class="tables" id="tablePicker"></div>
     <div class="tiny" style="margin-top:12px">טיפ: אפשר להתחיל בלוחות 2, 5 ו־10, ואז לפתוח את כל השאר.</div>
   </section>
@@ -79,7 +79,7 @@ button{font:inherit;cursor:pointer;border:0;touch-action:manipulation}button:foc
     <p id="resultText">סיימת את האתגר!</p>
     <div class="stats">
       <div class="stat"><strong id="resultCorrect">0</strong><span>תשובות נכונות</span></div>
-      <div class="stat"><strong id="resultStars">0</strong><span>כוכבים חדשים</span></div>
+      <div class="stat"><strong id="resultStars">0</strong><span>מטבעות חדשים</span></div>
       <div class="stat"><strong id="resultToys">0</strong><span>סקווישים חדשים</span></div>
     </div>
     <button class="btn primary wide" id="againBtn">עוד סיבוב! 🍡</button>
@@ -99,32 +99,57 @@ const TOYS=[
  {e:"🐨",n:"קואלה מתוקה"},{e:"🍋",n:"לימון שמח"},{e:"🐹",n:"אוגר קטנטן"},{e:"⭐",n:"כוכב נוצץ"}
 ];
 const STORE="squishyMathEmma_v1";
-let data=loadData(), selectedTable=2, questions=[], qi=0, sessionCorrect=0, sessionStars=0, sessionNewToys=[], current=null, locked=false;
-function loadData(){try{return Object.assign({stars:0,unlocked:[],tables:{},toys:[],reviews:{},sessions:0},JSON.parse(localStorage.getItem(STORE)||"{}"))}catch(e){return {stars:0,unlocked:[],tables:{},toys:[],reviews:{},sessions:0}}}
+// Bonus squishies are drawn from a shuffled bag, so a bonus won't repeat until the whole set has appeared.
+const BONUS_TOYS=[
+ {e:"🦊",n:"שועל פיצפון"},{e:"🐳",n:"לווייתן חלומי"},{e:"🪼",n:"מדוזת ג'לי"},{e:"🦋",n:"פרפר נוצץ"},
+ {e:"🐥",n:"אפרוח פופי"},{e:"🐢",n:"צב מנצנץ"},{e:"🦖",n:"דינוזאורון"},{e:"🐝",n:"דבורת דבש"},
+ {e:"🐬",n:"דולפין קופצני"},{e:"🦩",n:"פלמינגו ורוד"},{e:"🦦",n:"לוטרה מתוקה"},{e:"🐿️",n:"סנאית קטנה"},
+ {e:"🍄",n:"פטריית פיות"},{e:"🍒",n:"דובדבן תאומים"},{e:"🍍",n:"אננס טרופי"},{e:"🥝",n:"קיווי חמוד"},
+ {e:"🍭",n:"סוכרייה קסומה"},{e:"🍬",n:"סוכריית גומי"},{e:"🧋",n:"תה בועות"},{e:"🧸",n:"דובי טדי"},
+ {e:"👾",n:"חייזר גיימר"},{e:"🤖",n:"רובוט קטן"},{e:"👻",n:"רוח רפאים חמודה"},{e:"🐲",n:"דרקון פצפון"},
+ {e:"🪷",n:"פרח לוטוס"},{e:"🌟",n:"כוכב-על"},{e:"☁️",n:"ענן רך"},{e:"🌙",n:"ירח חלומי"},
+ {e:"💎",n:"יהלום ורוד"},{e:"🪄",n:"שרביט קסמים"},{e:"🎀",n:"פפיון מתוק"},{e:"🧿",n:"עין קסומה"},
+ {e:"🐧",n:"פינגווין חמוד"},{e:"🦔",n:"קיפודון"},{e:"🐾",n:"חיית מחמד מסתורית"},{e:"🪺",n:"קן הפתעות"}
+];
+let data=loadData(), selectedTable=2, questions=[], qi=0, sessionCorrect=0, sessionStars=0, sessionNewToys=[], sessionBonusToys=[], current=null, locked=false;
+function loadData(){try{return Object.assign({stars:0,unlocked:[],tables:{},toys:[],bonusToys:0,bonusCollection:[],bonusBag:[],reviews:{},sessions:0},JSON.parse(localStorage.getItem(STORE)||"{}"))}catch(e){return {stars:0,unlocked:[],tables:{},toys:[],bonusToys:0,bonusCollection:[],bonusBag:[],reviews:{},sessions:0}}}
 function save(){localStorage.setItem(STORE,JSON.stringify(data));renderHome()}
 function show(which){["homeScreen","gameScreen","resultScreen"].forEach(id=>document.getElementById(id).classList.toggle("hidden",id!==which))}
 function renderHome(){
  document.getElementById("starsTop").textContent=data.stars;document.getElementById("starsStat").textContent=data.stars;
  document.getElementById("learnedStat").textContent=TABLES.filter(t=>(data.tables[t]?.played||0)>0).length+"/9";
- document.getElementById("toysStat").textContent=data.toys.length;
+ document.getElementById("toysStat").textContent=data.toys.length+(data.bonusToys||0);
  const picker=document.getElementById("tablePicker");picker.innerHTML="";
- TABLES.forEach(t=>{let info=data.tables[t]||{};let b=document.createElement("button");b.className="table-btn"+(selectedTable===t?" active":"");b.innerHTML=`כפל ב־${t}<small>${info.played?`ניסית ${info.played} פעמים`:"מתחילים כאן ✨"}</small>`;b.onclick=()=>{selectedTable=t;renderHome()};picker.appendChild(b)});
+ TABLES.forEach(t=>{let info=data.tables[t]||{};let b=document.createElement("button");b.className="table-btn"+(selectedTable===t?" active":"");b.innerHTML=`לוח ${t}<small>${info.played?`ניסית ${info.played} פעמים`:"מתחילים כאן ✨"}</small>`;b.onclick=()=>{selectedTable=t;renderHome()};picker.appendChild(b)});
  const c=document.getElementById("collection");c.innerHTML="";
  TOYS.forEach((toy,i)=>{let got=data.toys.includes(i),el=document.createElement("div");el.className="toy"+(got?"":" locked");el.innerHTML=`<span class="emoji">${got?toy.e:"🔒"}</span><small>${got?toy.n:"סקווישי מסתורי"}</small>`;c.appendChild(el)});
+ (data.bonusCollection||[]).forEach(toy=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n}</small>`;c.appendChild(el)});
 }
 function pickQuestions(){
- let all=[];for(let n=1;n<=10;n++){let key=`${selectedTable}x${n}`;all.push({a:selectedTable,b:n,ans:selectedTable*n,key})}
- // Prioritize facts missed in earlier rounds, then shuffle the rest.
+ // 10 questions: five multiplication and five matching division facts.
+ let all=[];
+ for(let n=1;n<=10;n++){
+   const product=selectedTable*n;
+   const mult={a:selectedTable,b:n,ans:product,key:`${selectedTable}x${n}`,op:"×",difficulty:product<=20?1:product<=50?3:5};
+   const div={a:product,b:selectedTable,ans:n,key:`${product}d${selectedTable}`,op:"÷",difficulty:product<=20?1:product<=50?3:5};
+   all.push(mult,div);
+ }
+ // Prioritize previously missed facts, while keeping a mix of multiplication and division.
  all.sort((x,y)=>(data.reviews[y.key]?.wrong||0)-(data.reviews[x.key]?.wrong||0));
  let chosen=all.slice(0,10);
+ // Ensure both operation types appear in every round.
+ if(!chosen.some(q=>q.op==="÷")) chosen[chosen.length-1]=all.find(q=>q.op==="÷");
+ if(!chosen.some(q=>q.op==="×")) chosen[chosen.length-1]=all.find(q=>q.op==="×");
  for(let i=chosen.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[chosen[i],chosen[j]]=[chosen[j],chosen[i]]}
  return chosen;
 }
-function startGame(){questions=pickQuestions();qi=0;sessionCorrect=0;sessionStars=0;sessionNewToys=[];locked=false;show("gameScreen");document.getElementById("levelBadge").textContent="לוח כפל "+selectedTable;renderQuestion()}
+function startGame(){questions=pickQuestions();qi=0;sessionCorrect=0;sessionStars=0;sessionNewToys=[];sessionBonusToys=[];locked=false;show("gameScreen");document.getElementById("levelBadge").textContent="כפל וחילוק · לוח "+selectedTable;renderQuestion()}
 function renderQuestion(){
  locked=false;current=questions[qi];document.getElementById("progressText").textContent=`שאלה ${qi+1} מתוך ${questions.length}`;document.getElementById("sessionScore").textContent="⭐ "+sessionStars;document.getElementById("progressBar").style.width=(qi/questions.length*100)+"%";
- let toy=TOYS[(qi+selectedTable)%TOYS.length];document.getElementById("questionMascot").textContent=toy.e;document.getElementById("questionText").textContent=`${current.a} × ${current.b} = ?`;
- let options=new Set([current.ans]);while(options.size<3){let n=Math.random()<.5?current.ans+Math.ceil(Math.random()*10):Math.max(1,current.ans-Math.ceil(Math.random()*10));if(n!==current.ans)options.add(n)}
+ let toy=TOYS[(qi+selectedTable)%TOYS.length];document.getElementById("questionMascot").textContent=toy.e;document.getElementById("questionText").textContent=`${current.a} ${current.op} ${current.b} = ?`;
+ const options=new Set([current.ans]);
+ // Five plausible answer choices, including nearby numbers and common arithmetic slips.
+ while(options.size<5){let delta=Math.ceil(Math.random()*Math.max(4,Math.min(12,current.ans*.25)));let n=Math.random()<.5?current.ans+delta:Math.max(0,current.ans-delta);if(n!==current.ans)options.add(n)}
  let arr=[...options];for(let i=arr.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}
  const wrap=document.getElementById("answerButtons");wrap.innerHTML="";
  arr.forEach(n=>{let b=document.createElement("button");b.className="answer";b.textContent=n;b.onclick=()=>answer(n,b);wrap.appendChild(b)});
@@ -132,23 +157,29 @@ function renderQuestion(){
 }
 function answer(n,btn){
  if(locked)return;locked=true;let ok=n===current.ans;let review=data.reviews[current.key]||{wrong:0,correct:0};
- if(ok){sessionCorrect++;sessionStars+=1;data.stars++;review.correct++;review.lastWrong=false;let idx=TOYS.findIndex((_,i)=>!data.toys.includes(i));if(idx>=0){data.toys.push(idx);sessionNewToys.push(idx)}}
+ const reward=current.difficulty;
+ if(ok){sessionCorrect++;sessionStars+=reward;data.stars+=reward;review.correct++;review.lastWrong=false;let idx=TOYS.findIndex((_,i)=>!data.toys.includes(i));if(idx>=0){data.toys.push(idx);sessionNewToys.push(idx)}else{
+   if(!Array.isArray(data.bonusCollection))data.bonusCollection=[];
+   if(!Array.isArray(data.bonusBag))data.bonusBag=[];
+   if(data.bonusBag.length===0){data.bonusBag=BONUS_TOYS.map((_,i)=>i);for(let i=data.bonusBag.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[data.bonusBag[i],data.bonusBag[j]]=[data.bonusBag[j],data.bonusBag[i]]}}
+   const bonus=BONUS_TOYS[data.bonusBag.pop()];data.bonusCollection.push(bonus);data.bonusToys=(data.bonusToys||0)+1;sessionBonusToys.push(bonus);
+  }}
  else{review.wrong++;review.lastWrong=true}
  data.reviews[current.key]=review;
  [...document.querySelectorAll(".answer")].forEach(b=>{b.disabled=true;if(Number(b.textContent)===current.ans)b.classList.add("correct")});
  if(!ok)btn.classList.add("wrong");
  let f=document.getElementById("feedback");f.classList.remove("hidden");f.style.background=ok?"#e2f8e7":"#fff0d7";f.style.color=ok?"#287747":"#91652a";
- f.textContent=ok?`יששש! תשובה נכונה! ${sessionNewToys.length?TOYS[sessionNewToys[sessionNewToys.length-1]].e:"⭐"} קיבלת כוכב!`:`כמעט! 💗 ${current.a} כפול ${current.b} שווה ${current.ans}. מתרגלים ומתחזקים!`;
+ f.textContent=ok?`יששש! תשובה נכונה! קיבלת ${reward} ${reward===1?"מטבע": "מטבעות"} ${sessionNewToys.length?TOYS[sessionNewToys[sessionNewToys.length-1]].e:(sessionBonusToys.length?sessionBonusToys[sessionBonusToys.length-1].e+" סקווישי בונוס חדש!":"⭐")}`:`כמעט! 💗 ${current.a} ${current.op} ${current.b} שווה ${current.ans}. בפעם הבאה נצליח!`;
  document.getElementById("nextBtn").classList.remove("hidden");document.getElementById("nextBtn").textContent=qi===questions.length-1?"לסיום וקבלת הפרסים 🏆":"לשאלה הבאה ←";
  save();renderSessionToys();
 }
-function renderSessionToys(){let c=document.getElementById("sessionCollection");c.innerHTML="";if(!sessionNewToys.length){c.innerHTML='<div class="tiny">עני נכון כדי לפתוח סקווישים חדשים 🍡</div>';return}sessionNewToys.forEach(i=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${TOYS[i].e}</span><small>${TOYS[i].n}</small>`;c.appendChild(el)})}
+function renderSessionToys(){let c=document.getElementById("sessionCollection");c.innerHTML="";if(!sessionNewToys.length&&!sessionBonusToys.length){c.innerHTML='<div class="tiny">עני נכון כדי לפתוח סקווישים חדשים 🍡</div>';return}sessionNewToys.forEach(i=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${TOYS[i].e}</span><small>${TOYS[i].n}</small>`;c.appendChild(el)});sessionBonusToys.forEach(toy=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n}</small>`;c.appendChild(el)})}
 function nextQuestion(){if(qi<questions.length-1){qi++;renderQuestion()}else{finishGame()}}
 function finishGame(){
  data.sessions++;data.tables[selectedTable]=data.tables[selectedTable]||{played:0};data.tables[selectedTable].played++;data.tables[selectedTable].lastScore=sessionCorrect;save();
- show("resultScreen");document.getElementById("resultCorrect").textContent=sessionCorrect+"/10";document.getElementById("resultStars").textContent=sessionStars;document.getElementById("resultToys").textContent=sessionNewToys.length;
+ show("resultScreen");document.getElementById("resultCorrect").textContent=sessionCorrect+"/10";document.getElementById("resultStars").textContent=sessionStars;document.getElementById("resultToys").textContent=sessionNewToys.length+sessionBonusToys.length;
  document.getElementById("resultMascot").textContent=sessionCorrect>=8?"🏆":sessionCorrect>=5?"🌈":"💗";document.getElementById("resultTitle").textContent=sessionCorrect>=8?"וואו, איזו אלופה!":sessionCorrect>=5?"כל הכבוד, אמה!":"כל תרגול הוא הצלחה!";
- document.getElementById("resultText").textContent=`תרגלת את לוח ${selectedTable} והתקדמת עוד צעד!`;let missed=questions.filter(q=>data.reviews[q.key]?.lastWrong);document.getElementById("reviewList").textContent=missed.length?missed.map(q=>`${q.a} × ${q.b} = ${q.ans}`).join("  •  "):"הפעם לא היו טעויות — כל הכבוד! 🎉";
+ document.getElementById("resultText").textContent=`תרגלת כפל וחילוק בלוח ${selectedTable} והתקדמת עוד צעד!`;let missed=questions.filter(q=>data.reviews[q.key]?.lastWrong);document.getElementById("reviewList").textContent=missed.length?missed.map(q=>`${q.a} ${q.op} ${q.b} = ${q.ans}`).join("  •  "):"הפעם לא היו טעויות — כל הכבוד! 🎉";
 }
 document.getElementById("startBtn").onclick=startGame;document.getElementById("nextBtn").onclick=nextQuestion;document.getElementById("backBtn").onclick=()=>{show("homeScreen");renderHome()};document.getElementById("homeBtn").onclick=()=>{show("homeScreen");renderHome()};document.getElementById("againBtn").onclick=startGame;document.getElementById("resultHomeBtn").onclick=()=>{show("homeScreen");renderHome()};
 if("serviceWorker" in navigator && location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
