@@ -16,20 +16,64 @@
 *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:ui-rounded,"Arial Rounded MT Bold",system-ui,-apple-system,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,#fff 0 3%,transparent 24%),linear-gradient(145deg,#fff5fb,#f5efff 55%,#eefaff);padding:env(safe-area-inset-top) 14px env(safe-area-inset-bottom)}
 button{font:inherit;cursor:pointer;border:0;touch-action:manipulation}button:focus-visible{outline:3px solid #8862ca;outline-offset:3px}.app{max-width:620px;margin:0 auto;padding:14px 0 26px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:4px 2px 16px}.brand{display:flex;align-items:center;gap:10px}.logo{font-size:38px;filter:drop-shadow(0 4px 2px #dca8d2)}h1{font-size:clamp(22px,6vw,30px);margin:0;color:#b34d96;letter-spacing:-.6px}.subtitle{color:var(--muted);font-size:13px;margin-top:3px}.pill{background:#fff;border:1px solid #f2dced;border-radius:18px;padding:8px 12px;font-weight:800;white-space:nowrap;box-shadow:0 3px 10px #e6d4e9}.hero,.panel{background:#ffffffd9;border:1px solid #f4ddef;border-radius:26px;padding:18px;box-shadow:0 8px 24px #d8b9df30;margin-bottom:14px}.hero{text-align:center;background:linear-gradient(135deg,#ffe3f2,#f0e8ff);overflow:hidden;position:relative}.hero h2{margin:0 0 5px;font-size:23px;color:#a34d91}.hero p{margin:0;color:#8e6d96;font-size:14px}.mascots{display:flex;justify-content:center;gap:8px;margin:15px 0 7px}.mascot{width:58px;height:58px;border-radius:20px;background:#ffffffc9;display:grid;place-items:center;font-size:34px;box-shadow:0 4px 0 #e9c9e5;transform:rotate(var(--r,0deg))}.mascot:nth-child(2){--r:4deg}.mascot:nth-child(3){--r:-4deg}.mascot:nth-child(4){--r:3deg}.btn{border-radius:17px;padding:13px 16px;font-weight:850;transition:transform .12s,filter .12s}.btn:active{transform:scale(.97)}.primary{background:linear-gradient(135deg,#e77cbd,#b18be9);color:#fff;box-shadow:0 5px 0 #c15ca5}.secondary{background:#fff0fa;color:#a34d91;border:1px solid #f1d2e8}.wide{width:100%}.row{display:flex;gap:9px;align-items:center}.row>*{flex:1}.section-title{font-size:18px;font-weight:900;margin:0 0 12px}.tables{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.table-btn{border-radius:17px;background:#fff7fc;border:2px solid #f3d8eb;padding:12px 5px;color:#8d5c98;font-weight:850}.table-btn small{display:block;font-size:11px;font-weight:600;margin-top:4px;color:#b18aad}.table-btn.active{background:#f4eaff;border-color:#b28de5;color:#7652b2}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.stat{background:#fff;border-radius:17px;padding:12px 5px;text-align:center;border:1px solid #f5e2ef}.stat strong{display:block;font-size:21px;color:#bd6aa9}.stat span{font-size:11px;color:var(--muted)}.progress{height:9px;background:#f1e1f0;border-radius:99px;overflow:hidden;margin:8px 0 14px}.progress>div{height:100%;background:linear-gradient(90deg,#e77cbd,#9e8be7);width:0;transition:width .3s}.question{font-size:clamp(36px,10vw,54px);font-weight:950;color:#a34d91;margin:15px 0 4px;direction:ltr}.answers{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:18px 0 12px}.answer{background:#fff1fa;border:2px solid #f1d5e9;border-radius:16px;padding:13px 2px;font-size:clamp(18px,5vw,25px);font-weight:900;color:#8c5a9d;min-height:60px}.answer.correct{background:#dff8e6;border-color:#82d39b;color:#277747}.answer.wrong{background:#ffe4e8;border-color:#f19aaa;color:#a83f63}.feedback{padding:12px;border-radius:16px;text-align:center;font-weight:800;margin:10px 0}.hidden{display:none!important}.collection{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.toy{background:#fff6fb;border:1px solid #f2dced;border-radius:17px;text-align:center;padding:12px 3px;min-height:94px}.toy .emoji{font-size:32px;display:block}.toy small{display:block;font-size:11px;color:#9b7ca1;margin-top:5px}.toy.locked{filter:grayscale(1);opacity:.5;background:#f6f2f5}.footer{text-align:center;color:#a58da8;font-size:11px;padding:10px}.tiny{font-size:12px;color:var(--muted);line-height:1.5}.badge{display:inline-block;background:#fff0bd;color:#9b7122;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:800}.top-actions{display:flex;gap:7px;align-items:center}.iconbtn{border-radius:50%;width:40px;height:40px;background:#fff;border:1px solid #f1dced;color:#a34d91;font-size:18px}.install-note{background:#fff8d9;border-radius:14px;padding:11px;font-size:12px;color:#876b32;margin-top:10px;line-height:1.5}
 @media(min-width:500px){.tables{grid-template-columns:repeat(5,1fr)}.hero,.panel{padding:22px}.mascot{width:66px;height:66px;font-size:38px}}
+
+.theme-football{background:radial-gradient(circle at 15% 8%,#fff 0 2%,transparent 22%),linear-gradient(145deg,#e9fff0,#d7f5e0 55%,#e7f5ff);--pink3:#21884e;--ink:#234f39;--muted:#5e8a70}
+.theme-football .hero{background:linear-gradient(135deg,#d6f8df,#c9edff);border-color:#b6e8c5}
+.theme-football .hero h2,.theme-football h1,.theme-football .section-title{color:#207c48}
+.theme-football .primary{background:linear-gradient(135deg,#29a65c,#1686a8);box-shadow:0 5px 0 #147847}
+.theme-football .table-btn.active{background:#d9f7e2;border-color:#5bbd7c;color:#1d7944}
+.theme-football .answer{background:#effcf2;border-color:#bfe8ca;color:#246e44}
+.theme-football .answer.correct{background:#dff8e6;border-color:#82d39b}
+.theme-space{background:radial-gradient(circle at 15% 8%,#5b4c90 0 1%,transparent 25%),linear-gradient(145deg,#211a48,#35285e 55%,#183b5b);--ink:#f5efff;--muted:#c3b8e3}
+.theme-space .hero,.theme-space .panel{background:#ffffff14;border-color:#ffffff2b;box-shadow:0 8px 24px #09051f33}
+.theme-space .hero{background:linear-gradient(135deg,#49336d,#254c72)}
+.theme-space .hero h2,.theme-space h1,.theme-space .section-title,.theme-space .question{color:#f6d9ff}
+.theme-space .hero p,.theme-space .subtitle,.theme-space .tiny,.theme-space .stat span,.theme-space .footer{color:#d4c9ef}
+.theme-space .pill,.theme-space .iconbtn,.theme-space .stat,.theme-space .table-btn,.theme-space .toy{background:#ffffff18;border-color:#ffffff35;color:#f5efff}
+.theme-space .table-btn.active{background:#694f9b;border-color:#d9b8ff}
+.theme-space .primary{background:linear-gradient(135deg,#b46ce4,#657ee8);box-shadow:0 5px 0 #624aa6}
+.theme-space .secondary{background:#ffffff1c;color:#f5efff;border-color:#ffffff35}
+.theme-space .answer{background:#ffffff1c;border-color:#ffffff35;color:#fff}
+.theme-space .install-note{background:#42376a;color:#e7defb}
+.theme-space .progress{background:#ffffff2a}
+.theme-space .progress>div{background:linear-gradient(90deg,#ff91d2,#8cb7ff)}
+.theme-space .feedback{color:#5b466a!important}
+.theme-dino{background:radial-gradient(circle at 15% 8%,#fff 0 2%,transparent 22%),linear-gradient(145deg,#f4ffe5,#e3f3cc 55%,#e2f7f2);--ink:#45633c;--muted:#78946c}
+.theme-dino .hero{background:linear-gradient(135deg,#e5f7c8,#d6f4df)}
+.theme-dino .hero h2,.theme-dino h1,.theme-dino .section-title{color:#4e843b}
+.theme-dino .primary{background:linear-gradient(135deg,#83bc50,#36a88b);box-shadow:0 5px 0 #498b45}
+.theme-dino .answer{background:#f6ffe9;border-color:#d3e9b7;color:#4d763c}
+.prefs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.theme-choice{border:2px solid #f1d9eb;border-radius:17px;padding:11px 5px;background:#fff8fc;color:#87598e;font-weight:800;min-height:80px}
+.theme-choice span{display:block;font-size:25px;margin-bottom:4px}
+.theme-choice small{font-size:11px;font-weight:600}
+.theme-choice.active{border-color:#c06bb0;background:#f7e7fa;box-shadow:0 0 0 2px #f6d8ed}
+.theme-football .theme-choice.active{border-color:#38a565;background:#e0f8e7}
+.theme-space .theme-choice.active{border-color:#d7b5ff;background:#6c5897}
+.theme-space .theme-choice{background:#ffffff12;color:#f5efff;border-color:#ffffff30}
+.theme-dino .theme-choice.active{border-color:#7cae52;background:#e6f5d4}
+select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius:15px;background:#fff8fc;color:#76527f;font:inherit;font-weight:750}
+.theme-space select.age-select{background:#ffffff16;color:#fff;border-color:#ffffff35}
+.theme-space select.age-select option{color:#3c2a50}
+.path-card{display:flex;gap:12px;align-items:center;background:#fff8fc;border:1px solid #f0d8ea;border-radius:18px;padding:12px;margin-top:12px}
+.theme-football .path-card{background:#f3fff5;border-color:#cdebd4}
+.theme-space .path-card{background:#ffffff12;border-color:#ffffff30}
+.path-icon{font-size:30px}
+
 </style>
 </head>
 <body>
 <div class="app">
 <header class="top">
-  <div class="brand"><div class="logo">🍡</div><div><h1>Squishy Math</h1><div class="subtitle">העולם המתוק של אמה 💗</div></div></div>
+  <div class="brand"><div class="logo">🍡</div><div><h1>Squishy Math</h1><div class="subtitle" id="subtitle">העולם המתוק של אמה 💗</div></div></div>
   <div class="top-actions"><div class="pill">⭐ <span id="starsTop">0</span></div><button class="iconbtn" id="homeBtn" aria-label="בית">⌂</button></div>
 </header>
 
 <main id="homeScreen">
   <section class="hero">
-    <h2>היי אמה, מוכנה לשחק? 🌈</h2>
+    <h2 id="heroTitle">היי אמה, מוכנה לשחק? 🌈</h2>
     <p>מתרגלים כפל וחילוק, אוספים סקווישים ומגלים הפתעות!</p>
-    <div class="mascots"><div class="mascot">🍓</div><div class="mascot">🐸</div><div class="mascot">🍡</div><div class="mascot">🦄</div></div>
+    <div class="mascots" id="homeMascots"><div class="mascot">🍓</div><div class="mascot">🐸</div><div class="mascot">🍡</div><div class="mascot">🦄</div></div>
     <div class="row"><button class="btn primary wide" id="startBtn">יאללה, מתחילים! ✨</button></div>
   </section>
   <section class="panel">
@@ -42,9 +86,30 @@ button{font:inherit;cursor:pointer;border:0;touch-action:manipulation}button:foc
     <div class="tiny">כל תרגול קטן עוזר לזכור טוב יותר. מתקדמים בקצב שלך — בלי לחץ ובלי שעון 💕</div>
   </section>
   <section class="panel">
-    <h3 class="section-title">באיזה לוח נתרגל היום?</h3>
+    <h3 class="section-title">בוחרים עולם משחק 🎨</h3>
+    <div class="prefs-grid" id="themePicker">
+      <button class="theme-choice active" data-theme="squishy"><span>🍡</span>סקווישים<small>צבעוני ומתוק</small></button>
+      <button class="theme-choice" data-theme="football"><span>⚽</span>כדורגל<small>מגרש ואלופים</small></button>
+      <button class="theme-choice" data-theme="dino"><span>🦖</span>דינוזאורים<small>הרפתקה ירוקה</small></button>
+      <button class="theme-choice" data-theme="space"><span>🚀</span>חלל<small>כוכבים וגלקסיה</small></button>
+    </div>
+  </section>
+  <section class="panel">
+    <h3 class="section-title">מתאימים את האתגר 🎯</h3>
+    <label for="ageSelect" class="tiny">בחרו גיל כדי להתאים את סוג השאלות והקושי</label>
+    <select class="age-select" id="ageSelect">
+      <option value="6-7">גיל 6–7 · מתחילים</option>
+      <option value="8-9">גיל 8–9 · לומדים כפל וחילוק</option>
+      <option value="10-12">גיל 10–12 · אתגר מתקדם</option>
+      <option value="13+">גיל 13+ · אתגרי חשבון</option>
+    </select>
+    <div class="path-card"><div class="path-icon" id="pathIcon">🗺️</div><div><b id="pathTitle">מסלול הלמידה שלי</b><div class="tiny" id="pathDescription">האפליקציה תבחר את השלב הבא לפי ההתקדמות שלך.</div></div></div>
+    <button class="btn primary wide" style="margin-top:13px" id="guidedBtn">המשך במסלול שלי 🚀</button>
+  </section>
+  <section class="panel">
+    <h3 class="section-title">רוצה לבחור לוח בעצמך? (לא חובה)</h3>
     <div class="tables" id="tablePicker"></div>
-    <div class="tiny" style="margin-top:12px">טיפ: אפשר להתחיל בלוחות 2, 5 ו־10, ואז לפתוח את כל השאר.</div>
+    <div class="tiny" style="margin-top:12px">אפשר לדלג על הבחירה וללחוץ על „המשך במסלול שלי” — המשחק יבחר עבורך מה לתרגל.</div>
   </section>
   <section class="panel">
     <h3 class="section-title">אוסף הסקווישים שלי 🧸</h3>
@@ -111,45 +176,130 @@ const BONUS_TOYS=[
  {e:"💎",n:"יהלום ורוד"},{e:"🪄",n:"שרביט קסמים"},{e:"🎀",n:"פפיון מתוק"},{e:"🧿",n:"עין קסומה"},
  {e:"🐧",n:"פינגווין חמוד"},{e:"🦔",n:"קיפודון"},{e:"🐾",n:"חיית מחמד מסתורית"},{e:"🪺",n:"קן הפתעות"}
 ];
-let data=loadData(), selectedTable=2, questions=[], qi=0, sessionCorrect=0, sessionStars=0, sessionNewToys=[], sessionBonusToys=[], current=null, locked=false;
-function loadData(){try{return Object.assign({stars:0,unlocked:[],tables:{},toys:[],bonusToys:0,bonusCollection:[],bonusBag:[],reviews:{},sessions:0},JSON.parse(localStorage.getItem(STORE)||"{}"))}catch(e){return {stars:0,unlocked:[],tables:{},toys:[],bonusToys:0,bonusCollection:[],bonusBag:[],reviews:{},sessions:0}}}
+let data=loadData(), selectedTable=2, questions=[], qi=0, sessionCorrect=0, sessionStars=0, sessionNewToys=[], sessionBonusToys=[], current=null, locked=false, guidedMode=true;
+let selectedTheme="squishy", selectedAge="8-9";
+const THEME_INFO={
+ squishy:{label:"סקווישים",sub:"העולם המתוק של אמה 💗",title:"היי אמה, מוכנה לשחק? 🌈",mascots:["🍓","🐸","🍡","🦄"],icon:"🍡"},
+ football:{label:"כדורגל",sub:"אלופת המגרש ⚽",title:"מוכנים לעלות למגרש? ⚽",mascots:["⚽","🥅","👟","🏆"],icon:"⚽"},
+ dino:{label:"דינוזאורים",sub:"הרפתקת הדינוזאורים 🦖",title:"יוצאים להרפתקה פרהיסטורית! 🦖",mascots:["🦖","🥚","🌋","🦕"],icon:"🦖"},
+ space:{label:"חלל",sub:"משימת החלל המתמטית 🚀",title:"ממריאים למשימת חשבון! 🚀",mascots:["🚀","🪐","👽","🌟"],icon:"🚀"}
+};
+const AGE_INFO={
+ "6-7":{label:"מתחילים",tables:[2,5,10,3,4],max:5,ops:["×"],desc:"כפל בסיסי עם מספרים קטנים, צעד־צעד."},
+ "8-9":{label:"כפל וחילוק",tables:[2,5,10,3,4,6,7,8,9],max:10,ops:["×","÷"],desc:"כפל וחילוק עד 10, עם חזרה על תרגילים מאתגרים."},
+ "10-12":{label:"אתגר מתקדם",tables:[2,5,10,3,4,6,7,8,9,11,12],max:12,ops:["×","÷","multi"],desc:"לוחות עד 12, חילוק וגם כפל במספר דו־ספרתי."},
+ "13+":{label:"אתגרי חשבון",tables:[3,4,6,7,8,9,11,12,15,20,25],max:25,ops:["×","÷","multi","decimal"],desc:"מספרים גדולים יותר, כפל דו־ספרתי וחילוק מתקדם."}
+};
+
+function loadData(){try{return Object.assign({stars:0,unlocked:[],tables:{},toys:[],bonusToys:0,bonusCollection:[],bonusBag:[],reviews:{},sessions:0,preferences:{theme:"squishy",age:"8-9"}},JSON.parse(localStorage.getItem(STORE)||"{}"))}catch(e){return {stars:0,unlocked:[],tables:{},toys:[],bonusToys:0,bonusCollection:[],bonusBag:[],reviews:{},sessions:0,preferences:{theme:"squishy",age:"8-9"}}}}
 function save(){localStorage.setItem(STORE,JSON.stringify(data));renderHome()}
 function show(which){["homeScreen","gameScreen","resultScreen"].forEach(id=>document.getElementById(id).classList.toggle("hidden",id!==which))}
 function renderHome(){
  document.getElementById("starsTop").textContent=data.stars;document.getElementById("starsStat").textContent=data.stars;
  document.getElementById("learnedStat").textContent=TABLES.filter(t=>(data.tables[t]?.played||0)>0).length+"/9";
  document.getElementById("toysStat").textContent=data.toys.length+(data.bonusToys||0);
+ selectedTheme=data.preferences?.theme||selectedTheme;selectedAge=data.preferences?.age||selectedAge;
+ document.body.classList.remove("theme-football","theme-dino","theme-space");
+ if(selectedTheme!=="squishy")document.body.classList.add("theme-"+selectedTheme);
+ document.getElementById("subtitle").textContent=THEME_INFO[selectedTheme].sub;
+ document.getElementById("heroTitle").textContent=THEME_INFO[selectedTheme].title;
+ document.getElementById("homeMascots").innerHTML=THEME_INFO[selectedTheme].mascots.map(e=>`<div class="mascot">${e}</div>`).join("");
+ document.querySelectorAll(".theme-choice").forEach(b=>b.classList.toggle("active",b.dataset.theme===selectedTheme));
+ document.getElementById("ageSelect").value=selectedAge;
+ const ai=AGE_INFO[selectedAge], next=getNextTable();
+ document.getElementById("pathTitle").textContent=`מסלול ${ai.label} · השלב הבא: ${next===null?"חזרה וחיזוק":"לוח "+next}`;
+ document.getElementById("pathDescription").textContent=ai.desc+" האפליקציה בוחרת את השלב הבא לפי התוצאות שלך.";
+ document.getElementById("pathIcon").textContent=THEME_INFO[selectedTheme].icon;
  const picker=document.getElementById("tablePicker");picker.innerHTML="";
- TABLES.forEach(t=>{let info=data.tables[t]||{};let b=document.createElement("button");b.className="table-btn"+(selectedTable===t?" active":"");b.innerHTML=`לוח ${t}<small>${info.played?`ניסית ${info.played} פעמים`:"מתחילים כאן ✨"}</small>`;b.onclick=()=>{selectedTable=t;renderHome()};picker.appendChild(b)});
+ TABLES.forEach(t=>{let info=data.tables[t]||{};let b=document.createElement("button");b.className="table-btn"+(selectedTable===t?" active":"");b.innerHTML=`לוח ${t}<small>${info.played?`ניסית ${info.played} פעמים`:"תרגול ממוקד"}</small>`;b.onclick=()=>{selectedTable=t;guidedMode=false;startGame()};picker.appendChild(b)});
  const c=document.getElementById("collection");c.innerHTML="";
  TOYS.forEach((toy,i)=>{let got=data.toys.includes(i),el=document.createElement("div");el.className="toy"+(got?"":" locked");el.innerHTML=`<span class="emoji">${got?toy.e:"🔒"}</span><small>${got?toy.n:"סקווישי מסתורי"}</small>`;c.appendChild(el)});
  (data.bonusCollection||[]).forEach(toy=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n}</small>`;c.appendChild(el)});
 }
+function getNextTable(){
+ const ai=AGE_INFO[selectedAge];
+ const eligible=ai.tables;
+ // Advance in order; if a table has been mastered, move on. A table is mastered at 8/10 twice.
+ for(const t of eligible){const info=data.tables[t]||{};if(!info.mastered)return t}
+ // If all tables were mastered, revisit the one with the most missed facts.
+ let weakest=eligible[0], maxWrong=-1;
+ eligible.forEach(t=>{let wrong=Object.entries(data.reviews||{}).filter(([k,v])=>k.startsWith(t+"x")||k.startsWith(t+"d")).reduce((s,[k,v])=>s+(v.wrong||0),0);if(wrong>maxWrong){maxWrong=wrong;weakest=t}});
+ return weakest;
+}
+function setTheme(theme){if(!THEME_INFO[theme])return;selectedTheme=theme;data.preferences=data.preferences||{};data.preferences.theme=theme;save();}
+function setAge(age){if(!AGE_INFO[age])return;selectedAge=age;data.preferences=data.preferences||{};data.preferences.age=age;save();}
 function pickQuestions(){
- // 10 questions: five multiplication and five matching division facts.
- let all=[];
- for(let n=1;n<=10;n++){
-   const product=selectedTable*n;
-   const mult={a:selectedTable,b:n,ans:product,key:`${selectedTable}x${n}`,op:"×",difficulty:product<=20?1:product<=50?3:5};
-   const div={a:product,b:selectedTable,ans:n,key:`${product}d${selectedTable}`,op:"÷",difficulty:product<=20?1:product<=50?3:5};
-   all.push(mult,div);
+ const ai=AGE_INFO[selectedAge], all=[];
+ if(guidedMode){
+   const t=selectedTable;
+   const maxN=selectedAge==="6-7"?5:(selectedAge==="8-9"?10:(selectedAge==="10-12"?12:25));
+   for(let n=1;n<=maxN;n++){
+     const product=t*n;
+     all.push({a:t,b:n,ans:product,key:`${t}x${n}`,op:"×",difficulty:product<=20?1:product<=50?3:5,table:t});
+     if(ai.ops.includes("÷"))all.push({a:product,b:t,ans:n,key:`${product}d${t}`,op:"÷",difficulty:product<=20?1:product<=50?3:5,table:t});
+   }
+   if(selectedAge==="10-12"){
+     for(let i=0;i<14;i++){let a=12+Math.floor(Math.random()*39),b=2+Math.floor(Math.random()*9);all.push({a,b,ans:a*b,key:`m${a}x${b}`,op:"×",difficulty:5,table:t,advanced:true})}
+   }else if(selectedAge==="13+"){
+     for(let i=0;i<24;i++){
+       let a=12+Math.floor(Math.random()*88),b=12+Math.floor(Math.random()*38);
+       all.push({a,b,ans:a*b,key:`m${a}x${b}`,op:"×",difficulty:5,table:t,advanced:true});
+       let divisor=2+Math.floor(Math.random()*18), quotient=12+Math.floor(Math.random()*45), dividend=divisor*quotient;
+       all.push({a:dividend,b:divisor,ans:quotient,key:`d${dividend}d${divisor}`,op:"÷",difficulty:5,table:t,advanced:true});
+     }
+   }
+ }else{
+   if(selectedAge==="6-7"){
+     for(const t of [2,5,10,3,4])for(let n=1;n<=5;n++)all.push({a:t,b:n,ans:t*n,key:`${t}x${n}`,op:"×",difficulty:1,table:t});
+   }else if(selectedAge==="8-9"){
+     for(const t of [2,3,4,5,6,7,8,9,10])for(let n=1;n<=10;n++){
+       const product=t*n;
+       all.push({a:t,b:n,ans:product,key:`${t}x${n}`,op:"×",difficulty:product<=20?1:product<=50?3:5,table:t});
+       all.push({a:product,b:t,ans:n,key:`${product}d${t}`,op:"÷",difficulty:product<=20?1:product<=50?3:5,table:t});
+     }
+   }else if(selectedAge==="10-12"){
+     for(let t of [2,3,4,5,6,7,8,9,10,11,12])for(let n=1;n<=12;n++){
+       const product=t*n;
+       all.push({a:t,b:n,ans:product,key:`${t}x${n}`,op:"×",difficulty:product<=30?1:product<=80?3:5,table:t});
+       all.push({a:product,b:t,ans:n,key:`${product}d${t}`,op:"÷",difficulty:product<=30?1:product<=80?3:5,table:t});
+     }
+     for(let i=0;i<14;i++){let a=12+Math.floor(Math.random()*39),b=2+Math.floor(Math.random()*9);all.push({a,b,ans:a*b,key:`m${a}x${b}`,op:"×",difficulty:5,table:null,advanced:true})}
+   }else{
+     for(let i=0;i<24;i++){
+       let a=12+Math.floor(Math.random()*88),b=12+Math.floor(Math.random()*38);
+       all.push({a,b,ans:a*b,key:`m${a}x${b}`,op:"×",difficulty:5,table:null,advanced:true});
+       let divisor=2+Math.floor(Math.random()*18), quotient=12+Math.floor(Math.random()*45), dividend=divisor*quotient;
+       all.push({a:dividend,b:divisor,ans:quotient,key:`d${dividend}d${divisor}`,op:"÷",difficulty:5,table:null,advanced:true});
+     }
+   }
  }
- // Prioritize previously missed facts, while keeping a mix of multiplication and division.
+ // Bring back missed facts, but make sure older learners receive genuinely harder questions.
  all.sort((x,y)=>(data.reviews[y.key]?.wrong||0)-(data.reviews[x.key]?.wrong||0));
- let chosen=all.slice(0,10);
- // Ensure both operation types appear in every round.
- if(!chosen.some(q=>q.op==="÷")) chosen[chosen.length-1]=all.find(q=>q.op==="÷");
- if(!chosen.some(q=>q.op==="×")) chosen[chosen.length-1]=all.find(q=>q.op==="×");
+ let chosen;
+ if(guidedMode && (selectedAge==="10-12" || selectedAge==="13+")){
+   const advanced=all.filter(q=>q.advanced), basic=all.filter(q=>!q.advanced);
+   const advancedCount=selectedAge==="10-12"?3:7;
+   chosen=basic.slice(0,10-advancedCount).concat(advanced.slice(0,advancedCount));
+ }else{
+   chosen=all.slice(0,Math.min(10,all.length));
+ }
+ if(selectedAge!=="6-7"&&!chosen.some(q=>q.op==="÷")){let q=all.find(q=>q.op==="÷");if(q)chosen[chosen.length-1]=q}
  for(let i=chosen.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[chosen[i],chosen[j]]=[chosen[j],chosen[i]]}
  return chosen;
 }
-function startGame(){questions=pickQuestions();qi=0;sessionCorrect=0;sessionStars=0;sessionNewToys=[];sessionBonusToys=[];locked=false;show("gameScreen");document.getElementById("levelBadge").textContent="כפל וחילוק · לוח "+selectedTable;renderQuestion()}
+function startGame(){questions=pickQuestions();qi=0;sessionCorrect=0;sessionStars=0;sessionNewToys=[];sessionBonusToys=[];locked=false;show("gameScreen");document.getElementById("levelBadge").textContent=guidedMode?("מסלול · "+AGE_INFO[selectedAge].label):("תרגול ממוקד · לוח "+selectedTable);renderQuestion()}
+function startGuidedGame(){
+ guidedMode=true;const next=getNextTable();selectedTable=next||2;
+ // A guided session uses the age-specific pool; its level advances after repeated strong results.
+ startGame();
+}
 function renderQuestion(){
  locked=false;current=questions[qi];document.getElementById("progressText").textContent=`שאלה ${qi+1} מתוך ${questions.length}`;document.getElementById("sessionScore").textContent="⭐ "+sessionStars;document.getElementById("progressBar").style.width=(qi/questions.length*100)+"%";
- let toy=TOYS[(qi+selectedTable)%TOYS.length];document.getElementById("questionMascot").textContent=toy.e;document.getElementById("questionText").textContent=`${current.a} ${current.op} ${current.b} = ?`;
+ let toy=TOYS[(qi+selectedTable)%TOYS.length];document.getElementById("questionMascot").textContent=THEME_INFO[selectedTheme].mascots[qi%THEME_INFO[selectedTheme].mascots.length];document.getElementById("questionText").textContent=`${current.a} ${current.op} ${current.b} = ?`;
  const options=new Set([current.ans]);
  // Five plausible answer choices, including nearby numbers and common arithmetic slips.
- while(options.size<5){let delta=Math.ceil(Math.random()*Math.max(4,Math.min(12,current.ans*.25)));let n=Math.random()<.5?current.ans+delta:Math.max(0,current.ans-delta);if(n!==current.ans)options.add(n)}
+ while(options.size<5){let maxDelta=selectedAge==="13+"?100:(selectedAge==="10-12"?40:12);
+ let delta=Math.ceil(Math.random()*Math.max(4,Math.min(maxDelta,current.ans*.25)));let n=Math.random()<.5?current.ans+delta:Math.max(0,current.ans-delta);if(n!==current.ans)options.add(n)}
  let arr=[...options];for(let i=arr.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}
  const wrap=document.getElementById("answerButtons");wrap.innerHTML="";
  arr.forEach(n=>{let b=document.createElement("button");b.className="answer";b.textContent=n;b.onclick=()=>answer(n,b);wrap.appendChild(b)});
@@ -176,12 +326,22 @@ function answer(n,btn){
 function renderSessionToys(){let c=document.getElementById("sessionCollection");c.innerHTML="";if(!sessionNewToys.length&&!sessionBonusToys.length){c.innerHTML='<div class="tiny">עני נכון כדי לפתוח סקווישים חדשים 🍡</div>';return}sessionNewToys.forEach(i=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${TOYS[i].e}</span><small>${TOYS[i].n}</small>`;c.appendChild(el)});sessionBonusToys.forEach(toy=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n}</small>`;c.appendChild(el)})}
 function nextQuestion(){if(qi<questions.length-1){qi++;renderQuestion()}else{finishGame()}}
 function finishGame(){
- data.sessions++;data.tables[selectedTable]=data.tables[selectedTable]||{played:0};data.tables[selectedTable].played++;data.tables[selectedTable].lastScore=sessionCorrect;save();
+ data.sessions++;
+ if(!guidedMode){data.tables[selectedTable]=data.tables[selectedTable]||{played:0};data.tables[selectedTable].played++;data.tables[selectedTable].lastScore=sessionCorrect;}
+ else{
+   // Mark the next curriculum stage complete after two strong sessions (8/10 or better).
+   const target=getNextTable();if(target!==null){data.tables[target]=data.tables[target]||{played:0,goodRuns:0};data.tables[target].played++;data.tables[target].lastScore=sessionCorrect;data.tables[target].goodRuns=(data.tables[target].goodRuns||0)+(sessionCorrect>=8?1:0);if(data.tables[target].goodRuns>=2)data.tables[target].mastered=true;}
+ }
+ save();
  show("resultScreen");document.getElementById("resultCorrect").textContent=sessionCorrect+"/10";document.getElementById("resultStars").textContent=sessionStars;document.getElementById("resultToys").textContent=sessionNewToys.length+sessionBonusToys.length;
  document.getElementById("resultMascot").textContent=sessionCorrect>=8?"🏆":sessionCorrect>=5?"🌈":"💗";document.getElementById("resultTitle").textContent=sessionCorrect>=8?"וואו, איזו אלופה!":sessionCorrect>=5?"כל הכבוד, אמה!":"כל תרגול הוא הצלחה!";
- document.getElementById("resultText").textContent=`תרגלת כפל וחילוק בלוח ${selectedTable} והתקדמת עוד צעד!`;let missed=questions.filter(q=>data.reviews[q.key]?.lastWrong);document.getElementById("reviewList").textContent=missed.length?missed.map(q=>`${q.a} ${q.op} ${q.b} = ${q.ans}`).join("  •  "):"הפעם לא היו טעויות — כל הכבוד! 🎉";
+ document.getElementById("resultText").textContent=guidedMode?`השלמת סיבוב במסלול ${AGE_INFO[selectedAge].label} והתקדמת עוד צעד!`:`תרגלת תרגול ממוקד והתקדמת עוד צעד!`;let missed=questions.filter(q=>data.reviews[q.key]?.lastWrong);document.getElementById("reviewList").textContent=missed.length?missed.map(q=>`${q.a} ${q.op} ${q.b} = ${q.ans}`).join("  •  "):"הפעם לא היו טעויות — כל הכבוד! 🎉";
 }
-document.getElementById("startBtn").onclick=startGame;document.getElementById("nextBtn").onclick=nextQuestion;document.getElementById("backBtn").onclick=()=>{show("homeScreen");renderHome()};document.getElementById("homeBtn").onclick=()=>{show("homeScreen");renderHome()};document.getElementById("againBtn").onclick=startGame;document.getElementById("resultHomeBtn").onclick=()=>{show("homeScreen");renderHome()};
+document.getElementById("startBtn").onclick=startGuidedGame;
+document.getElementById("guidedBtn").onclick=startGuidedGame;
+document.getElementById("ageSelect").onchange=e=>setAge(e.target.value);
+document.querySelectorAll(".theme-choice").forEach(b=>b.onclick=()=>setTheme(b.dataset.theme));
+document.getElementById("nextBtn").onclick=nextQuestion;document.getElementById("backBtn").onclick=()=>{show("homeScreen");renderHome()};document.getElementById("homeBtn").onclick=()=>{show("homeScreen");renderHome()};document.getElementById("againBtn").onclick=()=>guidedMode?startGuidedGame():startGame();document.getElementById("resultHomeBtn").onclick=()=>{show("homeScreen");renderHome()};
 if("serviceWorker" in navigator && location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 renderHome();
 </script>

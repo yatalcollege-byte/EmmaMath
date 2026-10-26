@@ -1,10 +1,19 @@
 {
   "name": "Squishy Math — העולם המתוק של אמה",
-  "short_name": "EmmaMath",
+  "short_name": "Squishy Math",
   "lang": "he",
-  "start_url": "./",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#fff5fb",
   "theme_color": "#ffeff8",
-  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
