@@ -10,7 +10,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>Squishy Math 🍡 — העולם המתוק של אמה</title>
+<title>Squishy Math 🍡 — משחק חשבון אישי</title>
 <style>
 :root{--pink:#f8c9e4;--pink2:#ffeaf6;--pink3:#d96db0;--purple:#9874d7;--ink:#62496f;--muted:#947d9c;--mint:#d9f5df;--yellow:#fff0bb;--white:#fff}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:ui-rounded,"Arial Rounded MT Bold",system-ui,-apple-system,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,#fff 0 3%,transparent 24%),linear-gradient(145deg,#fff5fb,#f5efff 55%,#eefaff);padding:env(safe-area-inset-top) 14px env(safe-area-inset-bottom)}
@@ -60,6 +60,15 @@ select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius
 .theme-space .path-card{background:#ffffff12;border-color:#ffffff30}
 .path-icon{font-size:30px}
 
+
+/* Mobile-safe world buttons */
+.prefs-grid{grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+.theme-choice{min-width:0;max-width:100%;width:100%;white-space:normal;overflow-wrap:anywhere;word-break:normal;line-height:1.35;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center}
+.theme-choice small{display:block;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+@media(min-width:500px){.prefs-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:360px){.prefs-grid{gap:7px}.theme-choice{padding:10px 3px;font-size:13px}.hero,.panel{padding:13px}.top{gap:5px}.pill{padding:7px}}
+.name-input{width:100%;padding:12px;border:2px solid #efd7e9;border-radius:14px;font:inherit;background:#fff;color:#62496f;min-width:0}
+.shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.shop-item{background:#fff8fc;border:1px solid #ecd6e7;border-radius:16px;padding:12px;text-align:center;min-width:0}.shop-item .emoji{font-size:32px}.shop-item b{display:block;margin:5px 0}.shop-item button{margin-top:8px;width:100%;font-size:13px}.shop-item small{display:block;color:#735d7b}.theme-space .shop-item{background:#ffffff18;border-color:#ffffff35}.theme-space .shop-item small{color:#e1d6f2}
 </style>
 </head>
 <body>
@@ -84,6 +93,11 @@ select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius
       <div class="stat"><strong id="toysStat">0</strong><span>סקווישים</span></div>
     </div>
     <div class="tiny">כל תרגול קטן עוזר לזכור טוב יותר. מתקדמים בקצב שלך — בלי לחץ ובלי שעון 💕</div>
+  </section>
+  <section class="panel">
+    <h3 class="section-title">איך קוראים לך? ✨</h3>
+    <label class="tiny" for="playerName">השם יופיע בברכות במשחק. אפשר לשנות אותו בכל עת.</label>
+    <input id="playerName" class="name-input" maxlength="24" placeholder="השם שלי" autocomplete="nickname">
   </section>
   <section class="panel">
     <h3 class="section-title">בוחרים עולם משחק 🎨</h3>
@@ -112,9 +126,10 @@ select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius
     <div class="tiny" style="margin-top:12px">אפשר לדלג על הבחירה וללחוץ על „המשך במסלול שלי” — המשחק יבחר עבורך מה לתרגל.</div>
   </section>
   <section class="panel">
-    <h3 class="section-title">אוסף הסקווישים שלי 🧸</h3>
+    <h3 class="section-title" id="collectionTitle">האוסף שלי 🧸</h3>
     <div class="collection" id="collection"></div>
   </section>
+  <section class="panel"><h3 class="section-title">🛍️ חנות הפרסים</h3><p class="tiny">אפשר לקנות פרסים במטבעות שהרווחת מתשובות נכונות. הפריטים נשמרים באוסף לפי העולם.</p><div class="tiny" id="walletInfo"></div><div class="shop-grid" id="shopGrid"></div></section>
   <div class="install-note" id="installNote"><b>📱 רוצה לשים את המשחק במסך הבית?</b><br>באייפון: פתחי את הקישור ב‑Safari, לחצי על שיתוף ואז „הוספה למסך הבית”. באנדרואיד: בתפריט הדפדפן בחרי „התקנה” או „הוספה למסך הבית”.</div>
 </main>
 
@@ -126,14 +141,14 @@ select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius
     <div style="text-align:center">
       <div class="mascots" style="margin-top:4px"><div class="mascot" id="questionMascot">🍡</div></div>
       <div class="question" id="questionText">2 × 3 = ?</div>
-      <div class="tiny">איזו תשובה נכונה, אמה?</div>
+      <div class="tiny"><span id="questionPrompt">מה התשובה הנכונה?</span></div>
     </div>
     <div class="answers" id="answerButtons"></div>
     <div id="feedback" class="feedback hidden"></div>
     <button class="btn primary wide hidden" id="nextBtn">לשאלה הבאה ←</button>
   </section>
   <section class="panel">
-    <h3 class="section-title">הסקווישים שאספתי היום</h3><div class="collection" id="sessionCollection"></div>
+    <h3 class="section-title">הפרסים שאספתי היום</h3><div class="collection" id="sessionCollection"></div>
   </section>
 </main>
 
@@ -164,6 +179,24 @@ const TOYS=[
  {e:"🐨",n:"קואלה מתוקה"},{e:"🍋",n:"לימון שמח"},{e:"🐹",n:"אוגר קטנטן"},{e:"⭐",n:"כוכב נוצץ"}
 ];
 const STORE="squishyMathEmma_v1";
+const WORLD_TOYS={
+ squishy:TOYS,
+ football:[{e:"⚽",n:"כדור משחק"},{e:"🥅",n:"שער"},{e:"👟",n:"נעלי כדורגל"},{e:"🏆",n:"גביע"},{e:"🥇",n:"מדליה"},{e:"🏟️",n:"אצטדיון"},{e:"🧤",n:"כפפות שוער"},{e:"🎽",n:"חולצת קבוצה"}],
+ dino:[{e:"🦖",n:"טי־רקס"},{e:"🦕",n:"ברכיוזאורוס"},{e:"🥚",n:"ביצת דינוזאור"},{e:"🌋",n:"הר געש"},{e:"🦴",n:"מאובן"},{e:"🌴",n:"יער קדום"},{e:"🦎",n:"לטאה קדומה"},{e:"🪨",n:"סלע מאובן"}],
+ space:[{e:"🚀",n:"חללית"},{e:"🪐",n:"כוכב לכת"},{e:"👩‍🚀",n:"אסטרונאוטית"},{e:"🌙",n:"ירח"},{e:"🌟",n:"כוכב"},{e:"🛸",n:"צלחת מעופפת"},{e:"☄️",n:"שביט"},{e:"🛰️",n:"לוויין"}]
+};
+const SHOP={
+ squishy:[{e:"🎀",n:"פפיון",price:15},{e:"🌈",n:"קשת קסומה",price:30},{e:"🦄",n:"חד־קרן נדיר",price:75}],
+ football:[{e:"👟",n:"נעלי אלופים",price:15},{e:"🏟️",n:"אצטדיון",price:30},{e:"🏆",n:"גביע זהב",price:75}],
+ dino:[{e:"🥚",n:"ביצת הפתעה",price:15},{e:"🌋",n:"הר געש",price:30},{e:"🦕",n:"דינוזאור נדיר",price:75}],
+ space:[{e:"🌙",n:"ירח זוהר",price:15},{e:"🛸",n:"חללית מיוחדת",price:30},{e:"👑",n:"כתר הגלקסיה",price:75}]
+};
+function playerName(){return (data.playerName||"אמה").trim()||"אמה"}
+function wallet(){return Math.max(0,(data.stars||0)-(data.spentCoins||0))}
+function worldCollection(){data.worldCollection=data.worldCollection||{};return data.worldCollection[selectedTheme]||(data.worldCollection[selectedTheme]=[])}
+function buyItem(i){const item=SHOP[selectedTheme][i],key=selectedTheme+":"+i;data.purchases=data.purchases||[];if(data.purchases.includes(key)||wallet()<item.price)return;data.spentCoins=(data.spentCoins||0)+item.price;data.purchases.push(key);save()}
+function renderShop(){const grid=document.getElementById("shopGrid");grid.innerHTML="";document.getElementById("walletInfo").textContent=`🪙 יתרה: ${wallet()} מטבעות · הרווחת בסך הכול ${data.stars||0}`;SHOP[selectedTheme].forEach((item,i)=>{let key=selectedTheme+":"+i,owned=(data.purchases||[]).includes(key),b=document.createElement("div");b.className="shop-item";let emoji=document.createElement("div");emoji.className="emoji";emoji.textContent=item.e;b.appendChild(emoji);let title=document.createElement("b");title.textContent=item.n;b.appendChild(title);let cost=document.createElement("small");cost.textContent=item.price+" 🪙";b.appendChild(cost);let btn=document.createElement("button");btn.className="btn secondary";btn.disabled=owned||wallet()<item.price;btn.textContent=owned?"נרכש ✓":wallet()<item.price?`חסרים ${item.price-wallet()} מטבעות`:"קנייה";btn.onclick=()=>buyItem(i);b.appendChild(btn);grid.appendChild(b)})}
+
 // Bonus squishies are drawn from a shuffled bag, so a bonus won't repeat until the whole set has appeared.
 const BONUS_TOYS=[
  {e:"🦊",n:"שועל פיצפון"},{e:"🐳",n:"לווייתן חלומי"},{e:"🪼",n:"מדוזת ג'לי"},{e:"🦋",n:"פרפר נוצץ"},
@@ -195,14 +228,16 @@ function loadData(){try{return Object.assign({stars:0,unlocked:[],tables:{},toys
 function save(){localStorage.setItem(STORE,JSON.stringify(data));renderHome()}
 function show(which){["homeScreen","gameScreen","resultScreen"].forEach(id=>document.getElementById(id).classList.toggle("hidden",id!==which))}
 function renderHome(){
- document.getElementById("starsTop").textContent=data.stars;document.getElementById("starsStat").textContent=data.stars;
+ document.getElementById("starsTop").textContent=wallet();document.getElementById("starsStat").textContent=data.stars;
  document.getElementById("learnedStat").textContent=TABLES.filter(t=>(data.tables[t]?.played||0)>0).length+"/9";
  document.getElementById("toysStat").textContent=data.toys.length+(data.bonusToys||0);
  selectedTheme=data.preferences?.theme||selectedTheme;selectedAge=data.preferences?.age||selectedAge;
  document.body.classList.remove("theme-football","theme-dino","theme-space");
  if(selectedTheme!=="squishy")document.body.classList.add("theme-"+selectedTheme);
- document.getElementById("subtitle").textContent=THEME_INFO[selectedTheme].sub;
- document.getElementById("heroTitle").textContent=THEME_INFO[selectedTheme].title;
+ document.getElementById("subtitle").textContent=selectedTheme==="squishy"?"העולם המתוק שלך 💗":THEME_INFO[selectedTheme].sub;
+ document.getElementById("playerName").value=data.playerName||"";
+ document.getElementById("heroTitle").textContent=`היי ${playerName()}! ${THEME_INFO[selectedTheme].title.replace(/^היי אמה, ?/,"")}`;
+ document.getElementById("questionPrompt").textContent=`מה התשובה שלך, ${playerName()}?`;
  document.getElementById("homeMascots").innerHTML=THEME_INFO[selectedTheme].mascots.map(e=>`<div class="mascot">${e}</div>`).join("");
  document.querySelectorAll(".theme-choice").forEach(b=>b.classList.toggle("active",b.dataset.theme===selectedTheme));
  document.getElementById("ageSelect").value=selectedAge;
@@ -213,8 +248,12 @@ function renderHome(){
  const picker=document.getElementById("tablePicker");picker.innerHTML="";
  TABLES.forEach(t=>{let info=data.tables[t]||{};let b=document.createElement("button");b.className="table-btn"+(selectedTable===t?" active":"");b.innerHTML=`לוח ${t}<small>${info.played?`ניסית ${info.played} פעמים`:"תרגול ממוקד"}</small>`;b.onclick=()=>{selectedTable=t;guidedMode=false;startGame()};picker.appendChild(b)});
  const c=document.getElementById("collection");c.innerHTML="";
- TOYS.forEach((toy,i)=>{let got=data.toys.includes(i),el=document.createElement("div");el.className="toy"+(got?"":" locked");el.innerHTML=`<span class="emoji">${got?toy.e:"🔒"}</span><small>${got?toy.n:"סקווישי מסתורי"}</small>`;c.appendChild(el)});
- (data.bonusCollection||[]).forEach(toy=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n}</small>`;c.appendChild(el)});
+ document.getElementById("collectionTitle").textContent="האוסף שלי · "+THEME_INFO[selectedTheme].label;
+ const toys=WORLD_TOYS[selectedTheme],owned=worldCollection();
+ toys.forEach((toy,i)=>{let got=owned.includes(i)||(selectedTheme==="squishy"&&data.toys.includes(i)),el=document.createElement("div");el.className="toy"+(got?"":" locked");el.innerHTML=`<span class="emoji">${got?toy.e:"🔒"}</span><small>${got?toy.n:"פרס מסתורי"}</small>`;c.appendChild(el)});
+ if(selectedTheme==="squishy")(data.bonusCollection||[]).forEach(toy=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n}</small>`;c.appendChild(el)});
+ SHOP[selectedTheme].forEach((toy,i)=>{if((data.purchases||[]).includes(selectedTheme+":"+i)){let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n} · חנות</small>`;c.appendChild(el)}});
+ renderShop();
 }
 function getNextTable(){
  const ai=AGE_INFO[selectedAge];
@@ -308,22 +347,23 @@ function renderQuestion(){
 function answer(n,btn){
  if(locked)return;locked=true;let ok=n===current.ans;let review=data.reviews[current.key]||{wrong:0,correct:0};
  const reward=current.difficulty;
- if(ok){sessionCorrect++;sessionStars+=reward;data.stars+=reward;review.correct++;review.lastWrong=false;let idx=TOYS.findIndex((_,i)=>!data.toys.includes(i));if(idx>=0){data.toys.push(idx);sessionNewToys.push(idx)}else{
+ if(ok){sessionCorrect++;sessionStars+=reward;data.stars+=reward;review.correct++;review.lastWrong=false;let toys=WORLD_TOYS[selectedTheme],owned=worldCollection();let idx=toys.findIndex((_,i)=>!owned.includes(i)&&!(selectedTheme==="squishy"&&data.toys.includes(i)));if(idx>=0){owned.push(idx);if(selectedTheme==="squishy"&&!data.toys.includes(idx))data.toys.push(idx);sessionNewToys.push(idx)}else{
+   if(selectedTheme!=="squishy"){sessionBonusToys.push(toys[Math.floor(Math.random()*toys.length)]);}else{
    if(!Array.isArray(data.bonusCollection))data.bonusCollection=[];
    if(!Array.isArray(data.bonusBag))data.bonusBag=[];
    if(data.bonusBag.length===0){data.bonusBag=BONUS_TOYS.map((_,i)=>i);for(let i=data.bonusBag.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[data.bonusBag[i],data.bonusBag[j]]=[data.bonusBag[j],data.bonusBag[i]]}}
-   const bonus=BONUS_TOYS[data.bonusBag.pop()];data.bonusCollection.push(bonus);data.bonusToys=(data.bonusToys||0)+1;sessionBonusToys.push(bonus);
+   const bonus=BONUS_TOYS[data.bonusBag.pop()];data.bonusCollection.push(bonus);data.bonusToys=(data.bonusToys||0)+1;sessionBonusToys.push(bonus);}
   }}
  else{review.wrong++;review.lastWrong=true}
  data.reviews[current.key]=review;
  [...document.querySelectorAll(".answer")].forEach(b=>{b.disabled=true;if(Number(b.textContent)===current.ans)b.classList.add("correct")});
  if(!ok)btn.classList.add("wrong");
  let f=document.getElementById("feedback");f.classList.remove("hidden");f.style.background=ok?"#e2f8e7":"#fff0d7";f.style.color=ok?"#287747":"#91652a";
- f.textContent=ok?`יששש! תשובה נכונה! קיבלת ${reward} ${reward===1?"מטבע": "מטבעות"} ${sessionNewToys.length?TOYS[sessionNewToys[sessionNewToys.length-1]].e:(sessionBonusToys.length?sessionBonusToys[sessionBonusToys.length-1].e+" סקווישי בונוס חדש!":"⭐")}`:`כמעט! 💗 ${current.a} ${current.op} ${current.b} שווה ${current.ans}. בפעם הבאה נצליח!`;
+ f.textContent=ok?`יששש! תשובה נכונה! קיבלת ${reward} ${reward===1?"מטבע": "מטבעות"} ${sessionNewToys.length?WORLD_TOYS[selectedTheme][sessionNewToys[sessionNewToys.length-1]].e:(sessionBonusToys.length?sessionBonusToys[sessionBonusToys.length-1].e+" סקווישי בונוס חדש!":"⭐")}`:`כמעט! 💗 ${current.a} ${current.op} ${current.b} שווה ${current.ans}. בפעם הבאה נצליח!`;
  document.getElementById("nextBtn").classList.remove("hidden");document.getElementById("nextBtn").textContent=qi===questions.length-1?"לסיום וקבלת הפרסים 🏆":"לשאלה הבאה ←";
  save();renderSessionToys();
 }
-function renderSessionToys(){let c=document.getElementById("sessionCollection");c.innerHTML="";if(!sessionNewToys.length&&!sessionBonusToys.length){c.innerHTML='<div class="tiny">עני נכון כדי לפתוח סקווישים חדשים 🍡</div>';return}sessionNewToys.forEach(i=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${TOYS[i].e}</span><small>${TOYS[i].n}</small>`;c.appendChild(el)});sessionBonusToys.forEach(toy=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n}</small>`;c.appendChild(el)})}
+function renderSessionToys(){let c=document.getElementById("sessionCollection");c.innerHTML="";if(!sessionNewToys.length&&!sessionBonusToys.length){c.innerHTML='<div class="tiny">עני נכון כדי לפתוח סקווישים חדשים 🍡</div>';return}sessionNewToys.forEach(i=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${WORLD_TOYS[selectedTheme][i].e}</span><small>${WORLD_TOYS[selectedTheme][i].n}</small>`;c.appendChild(el)});sessionBonusToys.forEach(toy=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n}</small>`;c.appendChild(el)})}
 function nextQuestion(){if(qi<questions.length-1){qi++;renderQuestion()}else{finishGame()}}
 function finishGame(){
  data.sessions++;
@@ -334,9 +374,10 @@ function finishGame(){
  }
  save();
  show("resultScreen");document.getElementById("resultCorrect").textContent=sessionCorrect+"/10";document.getElementById("resultStars").textContent=sessionStars;document.getElementById("resultToys").textContent=sessionNewToys.length+sessionBonusToys.length;
- document.getElementById("resultMascot").textContent=sessionCorrect>=8?"🏆":sessionCorrect>=5?"🌈":"💗";document.getElementById("resultTitle").textContent=sessionCorrect>=8?"וואו, איזו אלופה!":sessionCorrect>=5?"כל הכבוד, אמה!":"כל תרגול הוא הצלחה!";
+ document.getElementById("resultMascot").textContent=sessionCorrect>=8?"🏆":sessionCorrect>=5?"🌈":"💗";document.getElementById("resultTitle").textContent=sessionCorrect>=8?"וואו, איזו אלופה!":sessionCorrect>=5?`כל הכבוד, ${playerName()}!`:"כל תרגול הוא הצלחה!";
  document.getElementById("resultText").textContent=guidedMode?`השלמת סיבוב במסלול ${AGE_INFO[selectedAge].label} והתקדמת עוד צעד!`:`תרגלת תרגול ממוקד והתקדמת עוד צעד!`;let missed=questions.filter(q=>data.reviews[q.key]?.lastWrong);document.getElementById("reviewList").textContent=missed.length?missed.map(q=>`${q.a} ${q.op} ${q.b} = ${q.ans}`).join("  •  "):"הפעם לא היו טעויות — כל הכבוד! 🎉";
 }
+document.getElementById("playerName").addEventListener("change",e=>{data.playerName=e.target.value.trim().slice(0,24);save()});
 document.getElementById("startBtn").onclick=startGuidedGame;
 document.getElementById("guidedBtn").onclick=startGuidedGame;
 document.getElementById("ageSelect").onchange=e=>setAge(e.target.value);
