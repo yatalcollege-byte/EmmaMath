@@ -403,7 +403,7 @@ function renderQuestion(){
   const match=current.prompt.match(/^(\d+)\s*[−-]\s*(\d+)\s*\?\s*(\d+)\s*[−-]\s*(\d+)$/);
   if(match){
    const holder=document.getElementById("questionText");holder.textContent="";
-   const expression=document.createElement("span");expression.className="compare-expression";expression.dir="ltr";
+   const expression=document.createElement("span");expression.className="compare-expression";expression.dir="ltr";expression.style.flexDirection="row";
    const left=document.createElement("bdi");left.dir="ltr";left.textContent=`${match[1]} − ${match[2]}`;
    const mark=document.createElement("bdi");mark.dir="ltr";mark.textContent="?";
    const right=document.createElement("bdi");right.dir="ltr";right.textContent=`${match[3]} − ${match[4]}`;
@@ -417,6 +417,9 @@ function renderQuestion(){
  let delta=Math.ceil(Math.random()*Math.max(4,Math.min(maxDelta,current.ans*.25)));let n=Math.random()<.5?current.ans+delta:Math.max(0,current.ans-delta);if(n!==current.ans)options.add(n)}
  let arr=[...options];for(let i=arr.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}
  const wrap=document.getElementById("answerButtons");wrap.innerHTML="";
+ // Comparison signs are mathematical symbols: keep their visual order LTR even on RTL pages.
+ wrap.dir=current.type==="compare"?"ltr":"rtl";
+ if(current.type==="compare")arr=["<","=",">"].filter(sign=>arr.includes(sign));
  arr.forEach(n=>{let b=document.createElement("button");b.className="answer";b.textContent=n;b.onclick=()=>answer(n,b);wrap.appendChild(b)});
  document.getElementById("feedback").classList.add("hidden");document.getElementById("nextBtn").classList.add("hidden");renderSessionToys();
 }
