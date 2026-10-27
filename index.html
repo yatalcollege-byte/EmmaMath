@@ -79,6 +79,13 @@ select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius
 .shekel-note.n50{background:linear-gradient(130deg,#b9b0df,#ece6ff 48%,#aea0d4)}.shekel-note.n100{background:linear-gradient(130deg,#e6b8bd,#fff0ed 48%,#dc9ca7)}.shekel-note.n200{background:linear-gradient(130deg,#9fc7e2,#e7f6ff 48%,#84b5d8)}
 .shekel-note:before{content:'₪';position:absolute;font-size:94px;opacity:.12;left:48px;top:-19px}.shekel-note .value{font-size:33px;font-weight:950;z-index:1}.shekel-note .unit{font-size:12px;writing-mode:vertical-rl;font-weight:800;z-index:1}.shekel-note .seal{border:2px solid #536d6880;border-radius:50%;width:38px;height:38px;display:grid;place-items:center;font-size:23px;z-index:1}
 @media(max-width:370px){.shekel-coin{width:62px;height:62px}.shekel-note{width:126px;height:69px}.money-tray{gap:7px}}
+/* Celebration overlay, independent of page layout */
+.confetti-layer{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;direction:ltr}
+.confetti-piece{position:absolute;top:-30px;width:10px;height:17px;border-radius:2px;opacity:0;animation:confetti-fall var(--duration,3s) linear var(--delay,0s) forwards;transform:translate3d(0,0,0) rotate(0deg)}
+@keyframes confetti-fall{0%{opacity:1;transform:translate3d(0,-20px,0) rotate(0deg)}90%{opacity:1}100%{opacity:0;transform:translate3d(var(--drift,0px),105vh,0) rotate(var(--rotation,720deg))}}
+@media(prefers-reduced-motion:reduce){.confetti-piece{animation-duration:.01ms!important;animation-delay:0ms!important}}
+.compare-expression{direction:ltr;unicode-bidi:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.25em;flex-wrap:wrap;max-width:100%}
+.compare-expression bdi{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -391,6 +398,18 @@ function renderQuestion(){
   denominations.forEach(value=>tray.appendChild(renderShekel(Number(value))));
   document.getElementById("questionText").appendChild(tray);
  }else if(current.visual)document.getElementById("questionText").textContent+=("\n"+current.visual);
+ if(current.type==="compare"){
+  // Never let RTL bidi reorder the two operands around the comparison sign.
+  const match=current.prompt.match(/^(\d+)\s*[−-]\s*(\d+)\s*\?\s*(\d+)\s*[−-]\s*(\d+)$/);
+  if(match){
+   const holder=document.getElementById("questionText");holder.textContent="";
+   const expression=document.createElement("span");expression.className="compare-expression";expression.dir="ltr";
+   const left=document.createElement("bdi");left.dir="ltr";left.textContent=`${match[1]} − ${match[2]}`;
+   const mark=document.createElement("bdi");mark.dir="ltr";mark.textContent="?";
+   const right=document.createElement("bdi");right.dir="ltr";right.textContent=`${match[3]} − ${match[4]}`;
+   expression.append(left,mark,right);holder.appendChild(expression);
+  }
+ }
  document.getElementById("questionText").style.whiteSpace="pre-line";
  const options=new Set(current.options||[current.ans]);
  // Five plausible answer choices, including nearby numbers and common arithmetic slips.
@@ -422,6 +441,25 @@ function answer(n,btn){
 }
 function renderSessionToys(){let c=document.getElementById("sessionCollection");c.innerHTML="";if(!sessionNewToys.length&&!sessionBonusToys.length){c.innerHTML='<div class="tiny">עני נכון כדי לפתוח סקווישים חדשים 🍡</div>';return}sessionNewToys.forEach(i=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${WORLD_TOYS[selectedTheme][i].e}</span><small>${WORLD_TOYS[selectedTheme][i].n}</small>`;c.appendChild(el)});sessionBonusToys.forEach(toy=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n}</small>`;c.appendChild(el)})}
 function nextQuestion(){if(qi<questions.length-1){qi++;renderQuestion()}else{finishGame()}}
+function celebrateCompletion(){
+ if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ document.querySelectorAll(".confetti-layer").forEach(el=>el.remove());
+ const layer=document.createElement("div");layer.className="confetti-layer";layer.setAttribute("aria-hidden","true");
+ const colors=["#f7a9d4","#f5d66d","#8fd9ca","#9a8bea","#86c5ef","#f3a884"];
+ for(let i=0;i<85;i++){
+  const piece=document.createElement("i");piece.className="confetti-piece";
+  piece.style.left=(Math.random()*100)+"%";
+  piece.style.backgroundColor=colors[i%colors.length];
+  piece.style.setProperty("--delay",(Math.random()*.8)+"s");
+  piece.style.setProperty("--duration",(2.2+Math.random()*1.6)+"s");
+  piece.style.setProperty("--drift",((Math.random()-.5)*240)+"px");
+  piece.style.setProperty("--rotation",((Math.random()-.5)*1200)+"deg");
+  layer.appendChild(piece);
+ }
+ document.body.appendChild(layer);
+ layer.addEventListener("animationend",()=>{if([...layer.children].every(el=>getComputedStyle(el).animationPlayState==="paused"))layer.remove()});
+ setTimeout(()=>layer.remove(),4800);
+}
 function finishGame(){
  data.sessions++;
  if(!guidedMode){data.tables[selectedTable]=data.tables[selectedTable]||{played:0};data.tables[selectedTable].played++;data.tables[selectedTable].lastScore=sessionCorrect;}
@@ -430,7 +468,7 @@ function finishGame(){
    const target=getNextTable();if(target!==null){data.tables[target]=data.tables[target]||{played:0,goodRuns:0};data.tables[target].played++;data.tables[target].lastScore=sessionCorrect;data.tables[target].goodRuns=(data.tables[target].goodRuns||0)+(sessionCorrect>=8?1:0);if(data.tables[target].goodRuns>=2)data.tables[target].mastered=true;}
  }
  save();
- show("resultScreen");document.getElementById("resultCorrect").textContent=sessionCorrect+"/10";document.getElementById("resultStars").textContent=sessionStars;document.getElementById("resultToys").textContent=sessionNewToys.length+sessionBonusToys.length;
+ show("resultScreen");celebrateCompletion();document.getElementById("resultCorrect").textContent=sessionCorrect+"/10";document.getElementById("resultStars").textContent=sessionStars;document.getElementById("resultToys").textContent=sessionNewToys.length+sessionBonusToys.length;
  document.getElementById("resultMascot").textContent=sessionCorrect>=8?"🏆":sessionCorrect>=5?"🌈":"💗";document.getElementById("resultTitle").textContent=sessionCorrect>=8?"וואו, איזו אלופה!":sessionCorrect>=5?`כל הכבוד, ${playerName()}!`:"כל תרגול הוא הצלחה!";
  document.getElementById("resultText").textContent=guidedMode?`השלמת סיבוב במסלול ${AGE_INFO[selectedAge].label} והתקדמת עוד צעד!`:`תרגלת תרגול ממוקד והתקדמת עוד צעד!`;let missed=questions.filter(q=>data.reviews[q.key]?.lastWrong);document.getElementById("reviewList").textContent=missed.length?missed.map(q=>q.detail||`${q.a} ${q.op} ${q.b} = ${q.ans}`).join("  •  "):"הפעם לא היו טעויות — כל הכבוד! 🎉";
 }
