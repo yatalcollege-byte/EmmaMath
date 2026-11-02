@@ -86,7 +86,7 @@ select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius
 @media(prefers-reduced-motion:reduce){.confetti-piece{animation-duration:.01ms!important;animation-delay:0ms!important}}
 .compare-expression{direction:ltr;unicode-bidi:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.25em;flex-wrap:wrap;max-width:100%}
 .compare-expression bdi{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
-.vertical-math{direction:ltr;display:inline-grid;grid-template-columns:repeat(3,1.25em);justify-content:center;text-align:center;font-size:clamp(35px,9vw,52px);font-weight:900;line-height:1.3;margin:8px auto}.vertical-math .digits{grid-column:1/4;text-align:right;letter-spacing:.18em;white-space:pre}.vertical-math .bottom{border-bottom:3px solid currentColor}.vertical-input{font:inherit;font-size:30px;width:140px;max-width:90%;text-align:center;direction:ltr;border:2px solid #c18acb;border-radius:14px;padding:8px}.digit-pad{display:grid;grid-template-columns:repeat(3,64px);gap:7px;justify-content:center;margin:12px auto}.digit-pad button{border-radius:12px;background:#f5e8ff;padding:12px;font-size:22px;font-weight:800}.open-submit{display:block;margin:8px auto}.vertical-hint{font-size:13px;color:#806789}
+.vertical-math{direction:ltr;display:inline-grid;grid-template-columns:repeat(3,1.25em);justify-content:center;text-align:center;font-size:clamp(35px,9vw,52px);font-weight:900;line-height:1.3;margin:8px auto}.vertical-math .digits{grid-column:1/4;text-align:right;letter-spacing:.18em;white-space:pre}.vertical-math .bottom{border-bottom:3px solid currentColor}.vertical-input{font:inherit;font-size:30px;width:140px;max-width:90%;text-align:center;direction:ltr;border:2px solid #c18acb;border-radius:14px;padding:8px}.digit-pad{display:grid;grid-template-columns:repeat(3,64px);gap:7px;justify-content:center;margin:12px auto}.digit-pad button{border-radius:12px;background:#f5e8ff;padding:12px;font-size:22px;font-weight:800}.open-submit{display:block;margin:8px auto}.place-answer{display:flex;direction:ltr;justify-content:center;gap:8px;margin:12px auto}.place-col{display:flex;flex-direction:column;align-items:center;gap:5px}.place-col label{font-size:13px;font-weight:800}.place-col input{width:58px;height:62px;text-align:center;font-size:34px;font-weight:900;border:2px solid #c18acb;border-radius:12px;background:white;direction:ltr}.place-col input:focus{outline:3px solid #ffcc6a}.vertical-hint{font-size:13px;color:#806789}
 </style>
 </head>
 <body>
@@ -309,6 +309,15 @@ function extraQuestions(){
  ["במחסן היו 704 מחברות. חילקו לכיתות 286 מחברות. כמה מחברות נשארו?",418,"704 − 286 = 418"],
  ["לטיול נרשמו 632 תלמידים. 278 כבר עלו לאוטובוסים. כמה תלמידים עדיין מחכים?",354,"632 − 278 = 354"],
  ["בחנות היו 900 מדבקות. נמכרו 457 מדבקות. כמה מדבקות נשארו?",443,"900 − 457 = 443"]);
+ if(!easy)stories.push(
+ ["בבית הספר יש 8 כיתות. בכל כיתה 7 שולחנות. כמה שולחנות יש בבית הספר?",56,"8 × 7 = 56"],
+ ["למורה יש 72 עפרונות. היא מחלקת אותם שווה בשווה בין 9 קבוצות. כמה עפרונות תקבל כל קבוצה?",8,"72 ÷ 9 = 8"],
+ ["במוזיאון ביקרו 245 ילדים בבוקר ו־178 ילדים בצהריים. כמה ילדים ביקרו בסך הכול?",423,"245 + 178 = 423"],
+ ["במחסן היו 812 כדורים. נשלחו 467 כדורים לבתי הספר. כמה נשארו במחסן?",345,"812 − 467 = 345"],
+ ["דנה קנתה 3 מחברות במחיר 8 שקלים כל אחת. היא שילמה 50 שקלים. כמה עודף קיבלה?",26,"3 × 8 = 24; 50 − 24 = 26"],
+ ["לטיול יצאו 6 אוטובוסים ובכל אחד 45 תלמידים. כמה תלמידים יצאו לטיול?",270,"6 × 45 = 270"],
+ ["בספרייה היו 380 ספרים. נוספו 125 ספרים, ולאחר מכן הושאלו 96. כמה ספרים נשארו?",409,"380 + 125 − 96 = 409"],
+ ["במאפייה הכינו 9 מגשים, ועל כל מגש 8 לחמניות. מכרו 35 לחמניות. כמה נשארו?",37,"9 × 8 − 35 = 37"]);
  stories.slice(0,easy?3:stories.length).forEach(([prompt,ans,detail],i)=>add("story",prompt,ans,[ans,ans+1,Math.max(0,ans-2),ans+3],`story-${i}`,detail));
  const shapes=[["משולש",3,"△"],["ריבוע",4,"□"],["מחומש",5,"⬠"],["משושה",6,"⬡"]];
  shapes.forEach(([name,n,symbol],i)=>{
@@ -328,6 +337,12 @@ function pickQuestions(){
      const product=t*n;
      all.push({a:t,b:n,ans:product,key:`${t}x${n}`,op:"×",difficulty:product<=20?1:product<=50?3:5,table:t});
      if(ai.ops.includes("÷"))all.push({a:product,b:t,ans:n,key:`${product}d${t}`,op:"÷",difficulty:product<=20?1:product<=50?3:5,table:t});
+   }
+   if(selectedAge==="8-9"){
+     for(let table=1;table<=10;table++)for(let n=1;n<=10;n++){
+       const product=table*n;
+       all.push({a:table,b:n,ans:product,key:`${table}x${n}`,op:"×",difficulty:product<=20?2:4,table});
+     }
    }
    if(selectedAge==="10-12"){
      for(let i=0;i<14;i++){let a=12+Math.floor(Math.random()*39),b=2+Math.floor(Math.random()*9);all.push({a,b,ans:a*b,key:`m${a}x${b}`,op:"×",difficulty:5,table:t,advanced:true})}
@@ -365,14 +380,19 @@ function pickQuestions(){
    }
  }
  // Bring back missed facts, but make sure older learners receive genuinely harder questions.
- all.sort((x,y)=>(data.reviews[y.key]?.wrong||0)-(data.reviews[x.key]?.wrong||0));
+ for(let i=all.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[all[i],all[j]]=[all[j],all[i]]}
+ all.sort((x,y)=>Math.min(3,data.reviews[y.key]?.wrong||0)-Math.min(3,data.reviews[x.key]?.wrong||0));
  let chosen;
  if(guidedMode && (selectedAge==="10-12" || selectedAge==="13+")){
    const advanced=all.filter(q=>q.advanced), basic=all.filter(q=>!q.advanced);
    const advancedCount=selectedAge==="10-12"?3:7;
    chosen=basic.slice(0,10-advancedCount).concat(advanced.slice(0,advancedCount));
  }else{
-   chosen=all.slice(0,Math.min(10,all.length));
+   if(selectedAge==="8-9"){
+     const challenging=all.filter(q=>q.op==="×"&&q.a>=4&&q.a<=10&&q.b>=4&&q.b<=10);
+     const other=all.filter(q=>!challenging.includes(q));
+     chosen=challenging.slice(0,6).concat(other.slice(0,4));
+   }else chosen=all.slice(0,Math.min(10,all.length));
  }
  if(selectedAge!=="6-7"&&!chosen.some(q=>q.op==="÷")){let q=all.find(q=>q.op==="÷");if(q)chosen[chosen.length-1]=q}
  if(guidedMode){
@@ -437,13 +457,30 @@ function renderQuestion(){
  wrap.dir=current.type==="compare"?"ltr":"rtl";
  if(current.type==="compare")arr=["<","=",">"].filter(sign=>arr.includes(sign));
  if(current.type==="vertical"){
-   const input=document.createElement("input");input.className="vertical-input";input.id="verticalAnswer";input.type="text";input.inputMode="numeric";input.maxLength=4;input.autocomplete="off";input.placeholder="התשובה";input.setAttribute("aria-label","הקלידו את תוצאת החיסור");
+   const cells=document.createElement("div");cells.className="place-answer";
+   const inputs=[];
+   for(const [place,label] of [[2,"מאות"],[1,"עשרות"],[0,"יחידות"]]){
+     const col=document.createElement("div");col.className="place-col";
+     const cap=document.createElement("label");cap.textContent=label;
+     const input=document.createElement("input");input.type="text";input.inputMode="numeric";input.maxLength=1;input.setAttribute("aria-label",label);input.dataset.place=place;
+     col.append(cap,input);cells.appendChild(col);inputs[place]=input;
+   }
+   let activePlace=0;const focusPlace=p=>{activePlace=p;inputs[p].focus()};
+   inputs.forEach((input,p)=>{
+     input.onfocus=()=>{activePlace=p};
+     input.oninput=()=>{input.value=input.value.replace(/[^0-9]/g,"").slice(-1);if(input.value&&p<2)focusPlace(p+1)};
+     input.onkeydown=e=>{if(e.key==="Enter")submit.click();if(e.key==="Backspace"&&!input.value&&p>0){e.preventDefault();focusPlace(p-1)}};
+   });
    const pad=document.createElement("div");pad.className="digit-pad";
-   for(const d of [1,2,3,4,5,6,7,8,9,"⌫",0,"נקה"]){const b=document.createElement("button");b.textContent=d;b.onclick=()=>{if(locked)return;if(d==="⌫")input.value=input.value.slice(0,-1);else if(d==="נקה")input.value="";else if(input.value.length<4)input.value+=d;input.focus()};pad.appendChild(b)}
+   for(const d of [1,2,3,4,5,6,7,8,9,"⌫",0,"נקה"]){const b=document.createElement("button");b.textContent=d;b.onclick=()=>{if(locked)return;
+      if(d==="נקה"){inputs.forEach(x=>x.value="");focusPlace(0)}
+      else if(d==="⌫"){inputs[activePlace].value="";if(activePlace>0)focusPlace(activePlace-1)}
+      else{inputs[activePlace].value=String(d);if(activePlace<2)focusPlace(activePlace+1);else inputs[2].focus()}
+   };pad.appendChild(b)}
+   const hint=document.createElement("div");hint.className="vertical-hint";hint.textContent="מתחילים ביחידות (מימין), ממשיכים לעשרות ואז למאות. אפשר לתקן כל ספרה.";
    const submit=document.createElement("button");submit.className="btn primary open-submit";submit.textContent="בדיקת תשובה";
-   submit.onclick=()=>{const raw=input.value.trim();if(!/^\d{1,4}$/.test(raw)){input.focus();return}answer(Number(raw),submit)};
-   input.onkeydown=e=>{if(e.key==="Enter")submit.click()};
-   wrap.append(input,pad,submit);
+   submit.onclick=()=>{if(inputs.some(x=>!/^\d$/.test(x.value))){focusPlace(inputs.findIndex(x=>!/^\d$/.test(x.value)));return}answer(Number(inputs[2].value+inputs[1].value+inputs[0].value),submit)};
+   wrap.append(cells,hint,pad,submit);
  }else arr.forEach(n=>{let b=document.createElement("button");b.className="answer";b.textContent=n;b.onclick=()=>answer(n,b);wrap.appendChild(b)});
  document.getElementById("feedback").classList.add("hidden");document.getElementById("nextBtn").classList.add("hidden");renderSessionToys();
 }
