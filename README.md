@@ -1,8 +1,7 @@
-Squishy Math v12
+# Squishy Math v14
 
-- All multiplication tables 1-10 are included in the guided 8-9 track, with stronger representation of 4-10.
-- More varied word problems, including multi-step problems.
-- Vertical subtraction uses separate hundreds, tens and units inputs, entered units first.
-- Upload all files to the repository root.
+Independent static PWA for GitHub Pages. Upload all five files from squishy_math/ to repository root.
 
-Version 13: mobile vertical subtraction layout fixed; isolated responsive digit pad, place cells and submit button.
+New: visual base-ten blocks for vertical subtraction, cubes for eligible multiplication/addition, and a cash reward request shop. Existing stars are preserved. Reward requests reserve stars; rejected requests refund them. Approved requests are tracked locally and do not transfer money.
+
+IMPORTANT: Email notifications are NOT automatic. Clicking a reward opens a prefilled email in the device's email application. The user must press Send. No backend is connected, so delivery is not verifiable. Parent approvals and requests are stored only in this browser/device, and the parent PIN is only a basic local deterrent, not secure authentication. For verified automatic email and cross-device approvals, a server-side service and authenticated parent account are required.

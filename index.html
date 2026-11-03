@@ -99,6 +99,8 @@ select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius
 .vertical-answer-mode .vertical-hint{width:min(100%,320px);font-size:13px;line-height:1.5;text-align:center;margin:0;overflow-wrap:anywhere}
 .vertical-answer-mode .open-submit{display:block;width:min(100%,286px);min-height:54px;white-space:normal;writing-mode:horizontal-tb;flex:none;margin:2px auto 0;box-sizing:border-box;font-size:17px}
 @media(max-width:390px){.vertical-answer-mode .place-answer,.vertical-answer-mode .digit-pad,.vertical-answer-mode .open-submit{width:min(100%,270px)}.vertical-answer-mode .place-col input{height:56px}}
+
+.cash-reward-note{width:100%;min-height:82px;box-sizing:border-box;border:2px solid #b6a0bb;border-radius:10px;background:linear-gradient(120deg,#d4e3d5,#b4d4bf);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#365a49;overflow:hidden;direction:rtl}.cash-reward-note strong{font-size:32px;line-height:1.1}.cash-reward-note small,.cash-bank{font-size:10px!important;color:#365a49!important}.shop-item:nth-child(2) .cash-reward-note{background:linear-gradient(120deg,#dfc5df,#cba4d5)}.shop-item:nth-child(3) .cash-reward-note{background:linear-gradient(120deg,#c1d6b6,#a3caa5)}.shop-item:nth-child(4) .cash-reward-note{background:linear-gradient(120deg,#e5c2ac,#d3a18e)}.request-line{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border-top:1px solid #ecd6e7;padding:8px 0}.request-line span{flex:1;min-width:130px}.request-line button{padding:8px}.visual-aid{max-width:100%;margin:10px auto;padding:10px;border-radius:15px;background:#fff7fc;box-sizing:border-box;text-align:center}.visual-aid small{display:block;font-size:11px;color:#866d8e;margin-top:7px}.base-ten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;direction:rtl}.base-ten-group{min-width:0}.base-ten-group b{font-size:12px}.base-ten-marks{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;color:#9c64ad;font-size:18px}.cube-groups{display:flex;flex-direction:column;align-items:center;gap:5px}.cube-group{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;max-width:100%}.math-cube{display:inline-block;width:17px;height:17px;border-radius:4px;background:#b9d7ff;border:2px solid #7fa9dc;box-shadow:inset 2px 2px #e3efff}.questionMascot{font-size:36px}@media(max-width:390px){.math-cube{width:13px;height:13px}.base-ten-marks{font-size:15px}}
 </style>
 </head>
 <body>
@@ -159,7 +161,8 @@ select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius
     <h3 class="section-title" id="collectionTitle">האוסף שלי 🧸</h3>
     <div class="collection" id="collection"></div>
   </section>
-  <section class="panel"><h3 class="section-title">🛍️ חנות הפרסים</h3><p class="tiny">אפשר לקנות פרסים במטבעות שהרווחת מתשובות נכונות. הפריטים נשמרים באוסף לפי העולם.</p><div class="tiny" id="walletInfo"></div><div class="shop-grid" id="shopGrid"></div></section>
+  <section class="panel"><h3 class="section-title">💵 חנות הכוכבים</h3><p class="tiny">אפשר לבקש פרס כספי אמיתי. כל בקשה מחייבת אישור הורה; זו אינה העברה אוטומטית של כסף.</p><div class="tiny" id="walletInfo"></div><div class="shop-grid" id="shopGrid"></div><div id="requestStatus" class="tiny" aria-live="polite"></div></section>
+  <section class="panel" id="parentPanel"><h3 class="section-title">🔐 אזור הורים</h3><p class="tiny">מגדירים כתובת דוא״ל לקבלת בקשות. באתר סטטי, ההודעה נשלחת רק לאחר פתיחת אפליקציית הדוא״ל ולחיצה על שליחה. לא ניתן לאמת את המשלוח אוטומטית.</p><label class="tiny" for="parentEmail">כתובת דוא״ל של ההורה</label><input id="parentEmail" type="email" autocomplete="email" placeholder="parent@example.com" style="width:100%;padding:12px;border:1px solid #d5acd0;border-radius:12px;direction:ltr;box-sizing:border-box"><button class="btn secondary wide" id="saveParentEmail" style="margin-top:8px">שמירת כתובת</button><p class="tiny">אישור פרסים: הזינו קוד הורה בן 4–8 ספרות. זהו מחסום בסיסי בלבד, לא אבטחה חזקה.</p><input id="parentPin" type="password" inputmode="numeric" pattern="[0-9]{4,8}" maxlength="8" placeholder="קוד הורה" style="width:100%;padding:12px;border:1px solid #d5acd0;border-radius:12px;box-sizing:border-box"><button class="btn secondary wide" id="parentUnlock" style="margin-top:8px">כניסה / הגדרת קוד</button><div id="parentRequests" class="tiny" aria-live="polite"></div></section>
   <div class="install-note" id="installNote"><b>📱 רוצה לשים את המשחק במסך הבית?</b><br>באייפון: פתחי את הקישור ב‑Safari, לחצי על שיתוף ואז „הוספה למסך הבית”. באנדרואיד: בתפריט הדפדפן בחרי „התקנה” או „הוספה למסך הבית”.</div>
 </main>
 
@@ -171,7 +174,7 @@ select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius
     <div style="text-align:center">
       <div class="mascots" style="margin-top:4px"><div class="mascot" id="questionMascot">🍡</div></div>
       <div class="question" id="questionText">2 × 3 = ?</div>
-      <div class="tiny"><span id="questionPrompt">מה התשובה הנכונה?</span></div>
+      <div id="visualAid" class="visual-aid" aria-label="המחשה חזותית"></div><div class="tiny"><span id="questionPrompt">מה התשובה הנכונה?</span></div>
     </div>
     <div class="answers" id="answerButtons"></div>
     <div id="feedback" class="feedback hidden"></div>
@@ -215,17 +218,15 @@ const WORLD_TOYS={
  dino:[{e:"🦖",n:"טי־רקס"},{e:"🦕",n:"ברכיוזאורוס"},{e:"🥚",n:"ביצת דינוזאור"},{e:"🌋",n:"הר געש"},{e:"🦴",n:"מאובן"},{e:"🌴",n:"יער קדום"},{e:"🦎",n:"לטאה קדומה"},{e:"🪨",n:"סלע מאובן"}],
  space:[{e:"🚀",n:"חללית"},{e:"🪐",n:"כוכב לכת"},{e:"👩‍🚀",n:"אסטרונאוטית"},{e:"🌙",n:"ירח"},{e:"🌟",n:"כוכב"},{e:"🛸",n:"צלחת מעופפת"},{e:"☄️",n:"שביט"},{e:"🛰️",n:"לוויין"}]
 };
-const SHOP={
- squishy:[{e:"🎀",n:"פפיון",price:15},{e:"🌈",n:"קשת קסומה",price:30},{e:"🦄",n:"חד־קרן נדיר",price:75}],
- football:[{e:"👟",n:"נעלי אלופים",price:15},{e:"🏟️",n:"אצטדיון",price:30},{e:"🏆",n:"גביע זהב",price:75}],
- dino:[{e:"🥚",n:"ביצת הפתעה",price:15},{e:"🌋",n:"הר געש",price:30},{e:"🦕",n:"דינוזאור נדיר",price:75}],
- space:[{e:"🌙",n:"ירח זוהר",price:15},{e:"🛸",n:"חללית מיוחדת",price:30},{e:"👑",n:"כתר הגלקסיה",price:75}]
-};
+const CASH_REWARDS=[{amount:5,price:100},{amount:10,price:180},{amount:20,price:320},{amount:50,price:700}];
 function playerName(){return (data.playerName||"אמה").trim()||"אמה"}
 function wallet(){return Math.max(0,(data.stars||0)-(data.spentCoins||0))}
 function worldCollection(){data.worldCollection=data.worldCollection||{};return data.worldCollection[selectedTheme]||(data.worldCollection[selectedTheme]=[])}
-function buyItem(i){const item=SHOP[selectedTheme][i],key=selectedTheme+":"+i;data.purchases=data.purchases||[];if(data.purchases.includes(key)||wallet()<item.price)return;data.spentCoins=(data.spentCoins||0)+item.price;data.purchases.push(key);save()}
-function renderShop(){const grid=document.getElementById("shopGrid");grid.innerHTML="";document.getElementById("walletInfo").textContent=`🪙 יתרה: ${wallet()} מטבעות · הרווחת בסך הכול ${data.stars||0}`;SHOP[selectedTheme].forEach((item,i)=>{let key=selectedTheme+":"+i,owned=(data.purchases||[]).includes(key),b=document.createElement("div");b.className="shop-item";let emoji=document.createElement("div");emoji.className="emoji";emoji.textContent=item.e;b.appendChild(emoji);let title=document.createElement("b");title.textContent=item.n;b.appendChild(title);let cost=document.createElement("small");cost.textContent=item.price+" 🪙";b.appendChild(cost);let btn=document.createElement("button");btn.className="btn secondary";btn.disabled=owned||wallet()<item.price;btn.textContent=owned?"נרכש ✓":wallet()<item.price?`חסרים ${item.price-wallet()} מטבעות`:"קנייה";btn.onclick=()=>buyItem(i);b.appendChild(btn);grid.appendChild(b)})}
+function cashNote(amount){const note=document.createElement("div");note.className="cash-reward-note";note.innerHTML=`<span class="cash-bank">בַּנְק הַכּוֹכָבִים</span><strong>${amount} ₪</strong><small>שובר פרס • לא שטר אמיתי</small>`;return note}
+function renderShop(){const grid=document.getElementById("shopGrid");grid.innerHTML="";document.getElementById("walletInfo").textContent=`⭐ יתרה זמינה: ${wallet()} כוכבים · נצברו ${data.stars||0}`;CASH_REWARDS.forEach((item,i)=>{const b=document.createElement("div");b.className="shop-item";b.appendChild(cashNote(item.amount));const cost=document.createElement("small");cost.textContent=item.price+" ⭐";b.appendChild(cost);const btn=document.createElement("button");btn.className="btn secondary";btn.disabled=wallet()<item.price;btn.textContent=wallet()<item.price?`חסרים ${item.price-wallet()} כוכבים`:"בקשת פרס";btn.onclick=()=>requestCash(i);b.appendChild(btn);grid.appendChild(b)});renderRequests(false)}
+function requestCash(i){const item=CASH_REWARDS[i];if(wallet()<item.price)return;const email=(data.parentEmail||"").trim();if(!email){document.getElementById("requestStatus").textContent="קודם צריך להגדיר כתובת דוא״ל של ההורה באזור ההורים.";document.getElementById("parentEmail").focus();return}if(!confirm(`לבקש מההורה פרס של ${item.amount} ₪ תמורת ${item.price} כוכבים? הכוכבים יישמרו בצד עד לאישור.`))return;data.cashRequests=data.cashRequests||[];const id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);data.cashRequests.push({id,amount:item.amount,price:item.price,status:"pending",created:new Date().toISOString()});data.spentCoins=(data.spentCoins||0)+item.price;save();renderShop();const subject=`בקשת פרס מ-Squishy Math: ${item.amount} ₪`;const body=`שלום,\n${playerName()} מבקש/ת פרס של ${item.amount} ש״ח תמורת ${item.price} כוכבים.\nמספר בקשה: ${id}\nכדי לאשר או לדחות, יש לפתוח את אזור ההורים במשחק במכשיר הזה.\nהבקשה אינה תשלום אוטומטי.`;document.getElementById("requestStatus").textContent="הבקשה נשמרה במכשיר. כעת ייפתח יישום הדוא״ל — צריך ללחוץ על 'שליחה' כדי שההורה יקבל הודעה.";window.location.href=`mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`}
+function renderRequests(unlocked){const out=document.getElementById("parentRequests");if(!unlocked){out.textContent="בקשות ממתינות: "+(data.cashRequests||[]).filter(r=>r.status==="pending").length;return}out.innerHTML="";const requests=data.cashRequests||[];if(!requests.length){out.textContent="אין בקשות עדיין.";return}requests.slice().reverse().forEach(r=>{const line=document.createElement("div");line.className="request-line";const txt=document.createElement("span");txt.textContent=`${r.amount} ₪ · ${r.price} ⭐ · ${r.status==="pending"?"ממתין לאישור":r.status==="approved"?"אושר":"נדחה"}`;line.appendChild(txt);if(r.status==="pending"){for(const [label,status] of [["אישור","approved"],["דחייה","rejected"]]){const btn=document.createElement("button");btn.className="btn secondary";btn.textContent=label;btn.onclick=()=>{if(status==="rejected")data.spentCoins=Math.max(0,(data.spentCoins||0)-r.price);r.status=status;save();renderShop();renderRequests(true)};line.appendChild(btn)}}out.appendChild(line)})}
+function initParents(){const email=document.getElementById("parentEmail"),pin=document.getElementById("parentPin");email.value=data.parentEmail||"";document.getElementById("saveParentEmail").onclick=()=>{if(!email.validity.valid||!email.value.includes("@")){alert("יש להזין כתובת דוא״ל תקינה");return}data.parentEmail=email.value.trim();save();alert("כתובת הדוא״ל נשמרה במכשיר זה")};document.getElementById("parentUnlock").onclick=()=>{const v=pin.value;if(!/^\d{4,8}$/.test(v)){alert("יש להזין 4–8 ספרות");return}if(!data.parentPin){if(!confirm("להגדיר את הקוד הזה כקוד הורה?"))return;data.parentPin=v;save()}else if(v!==data.parentPin){alert("קוד שגוי");return}renderRequests(true);pin.value=""};renderRequests(false)}
 
 // Bonus squishies are drawn from a shuffled bag, so a bonus won't repeat until the whole set has appeared.
 const BONUS_TOYS=[
@@ -282,7 +283,7 @@ function renderHome(){
  const toys=WORLD_TOYS[selectedTheme],owned=worldCollection();
  toys.forEach((toy,i)=>{let got=owned.includes(i)||(selectedTheme==="squishy"&&data.toys.includes(i)),el=document.createElement("div");el.className="toy"+(got?"":" locked");el.innerHTML=`<span class="emoji">${got?toy.e:"🔒"}</span><small>${got?toy.n:"פרס מסתורי"}</small>`;c.appendChild(el)});
  if(selectedTheme==="squishy")(data.bonusCollection||[]).forEach(toy=>{let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n}</small>`;c.appendChild(el)});
- SHOP[selectedTheme].forEach((toy,i)=>{if((data.purchases||[]).includes(selectedTheme+":"+i)){let el=document.createElement("div");el.className="toy";el.innerHTML=`<span class="emoji">${toy.e}</span><small>${toy.n} · חנות</small>`;c.appendChild(el)}});
+ 
  renderShop();
 }
 function getNextTable(){
@@ -427,6 +428,8 @@ function renderShekel(n){
  else{el.className="shekel-coin "+(n===2||n===5?"silver":"gold");el.setAttribute("aria-label",`מטבע של ${n} שקלים`);el.innerHTML=`<span class="value">${n}</span><span class="unit">שקלים</span>`;}
  return el;
 }
+function renderVisualAid(q){const root=document.getElementById("visualAid");root.innerHTML="";root.style.display="none";if(q.type==="money"||q.type==="compare"||q.type==="geometry")return;const isVertical=q.type==="vertical";const a=Number(q.a),b=Number(q.b);if(isVertical){const m=q.prompt.match(/(\d+)\s*−\s*(\d+)/);if(!m)return;const n=Number(m[1]);const groups=document.createElement("div");groups.className="base-ten";for(const [count,name,icon] of [[Math.floor(n/100),"מאות","▦"],[Math.floor(n%100/10),"עשרות","▥"],[n%10,"יחידות","■"]]){const group=document.createElement("div");group.className="base-ten-group";const label=document.createElement("b");label.textContent=name;group.appendChild(label);const marks=document.createElement("div");marks.className="base-ten-marks";for(let i=0;i<count;i++){const el=document.createElement("span");el.textContent=icon;marks.appendChild(el)}group.appendChild(marks);groups.appendChild(group)}root.appendChild(groups);const caption=document.createElement("small");caption.textContent="כך נראה המספר העליון במאות, עשרות ויחידות. אפשר להיעזר בהמחשה.";root.appendChild(caption);root.style.display="block";return}
+if(!Number.isInteger(a)||!Number.isInteger(b)||a<1||b<1||a>10||b>10||q.type)return;if(q.op!=="×"&&q.op!=="x"&&q.op!=="+")return;const total=q.op==="+"?a+b:a*b;if(total>80)return;const scene=document.createElement("div");scene.className="cube-groups";const groups=q.op==="+"?2:a;const per=q.op==="+"?0:b;for(let g=0;g<groups;g++){const row=document.createElement("div");row.className="cube-group";for(let j=0;j<(q.op==="+"?(g===0?a:b):per);j++){const cube=document.createElement("span");cube.className="math-cube";row.appendChild(cube)}scene.appendChild(row)}root.appendChild(scene);root.style.display="block"}
 function renderQuestion(){
  locked=false;current=questions[qi];document.getElementById("progressText").textContent=`שאלה ${qi+1} מתוך ${questions.length}`;document.getElementById("sessionScore").textContent="⭐ "+sessionStars;document.getElementById("progressBar").style.width=(qi/questions.length*100)+"%";
  let toy=TOYS[(qi+selectedTable)%TOYS.length];document.getElementById("questionMascot").textContent=THEME_INFO[selectedTheme].mascots[qi%THEME_INFO[selectedTheme].mascots.length];document.getElementById("questionText").textContent=current.prompt||`${current.a} ${current.op} ${current.b} = ?`;
@@ -458,6 +461,7 @@ function renderQuestion(){
    const bottom=document.createElement("div");bottom.className="digits bottom";bottom.textContent="− "+m[2];
    display.append(top,bottom);holder.appendChild(display);
  }
+ renderVisualAid(current);
  document.getElementById("questionText").style.whiteSpace="pre-line";
  const options=new Set(current.options||[current.ans]);
  // Five plausible answer choices, including nearby numbers and common arithmetic slips.
@@ -556,7 +560,7 @@ document.getElementById("ageSelect").onchange=e=>setAge(e.target.value);
 document.querySelectorAll(".theme-choice").forEach(b=>b.onclick=()=>setTheme(b.dataset.theme));
 document.getElementById("nextBtn").onclick=nextQuestion;document.getElementById("backBtn").onclick=()=>{show("homeScreen");renderHome()};document.getElementById("homeBtn").onclick=()=>{show("homeScreen");renderHome()};document.getElementById("againBtn").onclick=()=>guidedMode?startGuidedGame():startGame();document.getElementById("resultHomeBtn").onclick=()=>{show("homeScreen");renderHome()};
 if("serviceWorker" in navigator && location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
-renderHome();
+initParents();renderHome();
 </script>
 </body>
 </html>
