@@ -101,6 +101,11 @@ select.age-select{width:100%;padding:13px;border:2px solid #efd7e9;border-radius
 @media(max-width:390px){.vertical-answer-mode .place-answer,.vertical-answer-mode .digit-pad,.vertical-answer-mode .open-submit{width:min(100%,270px)}.vertical-answer-mode .place-col input{height:56px}}
 
 .cash-reward-note{width:100%;min-height:82px;box-sizing:border-box;border:2px solid #b6a0bb;border-radius:10px;background:linear-gradient(120deg,#d4e3d5,#b4d4bf);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#365a49;overflow:hidden;direction:rtl}.cash-reward-note strong{font-size:32px;line-height:1.1}.cash-reward-note small,.cash-bank{font-size:10px!important;color:#365a49!important}.shop-item:nth-child(2) .cash-reward-note{background:linear-gradient(120deg,#dfc5df,#cba4d5)}.shop-item:nth-child(3) .cash-reward-note{background:linear-gradient(120deg,#c1d6b6,#a3caa5)}.shop-item:nth-child(4) .cash-reward-note{background:linear-gradient(120deg,#e5c2ac,#d3a18e)}.request-line{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border-top:1px solid #ecd6e7;padding:8px 0}.request-line span{flex:1;min-width:130px}.request-line button{padding:8px}.visual-aid{max-width:100%;margin:10px auto;padding:10px;border-radius:15px;background:#fff7fc;box-sizing:border-box;text-align:center}.visual-aid small{display:block;font-size:11px;color:#866d8e;margin-top:7px}.base-ten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;direction:rtl}.base-ten-group{min-width:0}.base-ten-group b{font-size:12px}.base-ten-marks{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;color:#9c64ad;font-size:18px}.cube-groups{display:flex;flex-direction:column;align-items:center;gap:5px}.cube-group{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;max-width:100%}.math-cube{display:inline-block;width:17px;height:17px;border-radius:4px;background:#b9d7ff;border:2px solid #7fa9dc;box-shadow:inset 2px 2px #e3efff}.questionMascot{font-size:36px}@media(max-width:390px){.math-cube{width:13px;height:13px}.base-ten-marks{font-size:15px}}
+
+/* v15: LTR place-value columns, visual blocks for both operands and interactive borrowing */
+.visual-aid{width:100%;max-width:530px;overflow:hidden}
+.pv-panel{width:100%;direction:ltr}.pv-grid{display:grid;grid-template-columns:62px repeat(3,minmax(0,1fr));gap:5px;align-items:stretch;margin:5px 0}.pv-head{font-size:11px;text-align:center}.pv-grid>strong{font-size:11px;align-self:center;overflow-wrap:anywhere}.pv-cell{border:1px solid #e4d4e5;border-radius:9px;padding:5px 2px;min-width:0;min-height:64px;background:#fff;display:flex;flex-direction:column;align-items:center;gap:5px}.pv-cell>b{font-size:15px}.pv-blocks{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-content:flex-start}.pv-block{display:inline-block;flex-shrink:0;box-sizing:border-box}.pv-hundreds{width:23px;height:23px;border:1px solid #5583c4;border-radius:2px;background:repeating-linear-gradient(0deg,transparent 0 3px,#6491ce 3px 4px),repeating-linear-gradient(90deg,#bdd8f9 0 3px,#6491ce 3px 4px)}.pv-tens{width:9px;height:29px;border:1px solid #4d9c72;border-radius:2px;background:repeating-linear-gradient(0deg,#b4e9c6 0 2px,#58a77b 2px 3px)}.pv-ones{width:10px;height:10px;border:1px solid #c18c2d;background:#f7ce76;border-radius:2px}.pv-bottom .pv-cell{background:#f8f4ff}.pv-caption{font-size:12px;line-height:1.5;color:#705f79;margin:8px auto}.pv-help,.pv-controls button{border:0;border-radius:10px;padding:10px 12px;background:#eee0ff;color:#52336f;font-weight:800;cursor:pointer;max-width:100%}.pv-guide{margin-top:8px;border:1px solid #e4d4e5;border-radius:12px;padding:9px}.pv-guide[hidden]{display:none}.pv-guide p{font-size:14px;line-height:1.6}.pv-controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.pv-controls button:disabled{opacity:.5}.pv-division p{font-size:13px}.pv-div-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(65px,1fr));gap:6px}.pv-div-group{border:1px solid #d5c4e5;border-radius:9px;padding:6px 3px;min-width:0}.pv-div-group>b{font-size:11px}.pv-div-cubes{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;min-height:20px;margin-top:5px}
+@media(max-width:390px){.pv-grid{grid-template-columns:48px repeat(3,minmax(0,1fr));gap:3px}.pv-cell{padding:4px 1px}.pv-hundreds{width:19px;height:19px}.pv-tens{height:24px}.pv-grid>strong{font-size:10px}}
 </style>
 </head>
 <body>
@@ -428,8 +433,60 @@ function renderShekel(n){
  else{el.className="shekel-coin "+(n===2||n===5?"silver":"gold");el.setAttribute("aria-label",`מטבע של ${n} שקלים`);el.innerHTML=`<span class="value">${n}</span><span class="unit">שקלים</span>`;}
  return el;
 }
-function renderVisualAid(q){const root=document.getElementById("visualAid");root.innerHTML="";root.style.display="none";if(q.type==="money"||q.type==="compare"||q.type==="geometry")return;const isVertical=q.type==="vertical";const a=Number(q.a),b=Number(q.b);if(isVertical){const m=q.prompt.match(/(\d+)\s*−\s*(\d+)/);if(!m)return;const n=Number(m[1]);const groups=document.createElement("div");groups.className="base-ten";for(const [count,name,icon] of [[Math.floor(n/100),"מאות","▦"],[Math.floor(n%100/10),"עשרות","▥"],[n%10,"יחידות","■"]]){const group=document.createElement("div");group.className="base-ten-group";const label=document.createElement("b");label.textContent=name;group.appendChild(label);const marks=document.createElement("div");marks.className="base-ten-marks";for(let i=0;i<count;i++){const el=document.createElement("span");el.textContent=icon;marks.appendChild(el)}group.appendChild(marks);groups.appendChild(group)}root.appendChild(groups);const caption=document.createElement("small");caption.textContent="כך נראה המספר העליון במאות, עשרות ויחידות. אפשר להיעזר בהמחשה.";root.appendChild(caption);root.style.display="block";return}
-if(!Number.isInteger(a)||!Number.isInteger(b)||a<1||b<1||a>10||b>10||q.type)return;if(q.op!=="×"&&q.op!=="x"&&q.op!=="+")return;const total=q.op==="+"?a+b:a*b;if(total>80)return;const scene=document.createElement("div");scene.className="cube-groups";const groups=q.op==="+"?2:a;const per=q.op==="+"?0:b;for(let g=0;g<groups;g++){const row=document.createElement("div");row.className="cube-group";for(let j=0;j<(q.op==="+"?(g===0?a:b):per);j++){const cube=document.createElement("span");cube.className="math-cube";row.appendChild(cube)}scene.appendChild(row)}root.appendChild(scene);root.style.display="block"}
+function makeBlock(kind){
+ const el=document.createElement('span');el.className='pv-block pv-'+kind;el.setAttribute('aria-hidden','true');
+ if(kind==='hundreds'){for(let i=0;i<10;i++){const line=document.createElement('i');el.appendChild(line)}}
+ if(kind==='tens'){for(let i=0;i<10;i++){const line=document.createElement('i');el.appendChild(line)}}
+ return el;
+}
+function blockColumn(count,kind){const area=document.createElement('div');area.className='pv-blocks';for(let i=0;i<count;i++)area.appendChild(makeBlock(kind));return area}
+function renderVisualAid(q){
+ const root=document.getElementById('visualAid');root.innerHTML='';root.style.display='none';
+ const match=q.type==='vertical'&&q.prompt.match(/(\d+)\s*−\s*(\d+)/);
+ if(match){
+  const top=Number(match[1]),bottom=Number(match[2]);let state=[Math.floor(top/100),Math.floor(top%100/10),top%10];let phase=0;
+  const panel=document.createElement('div');panel.className='pv-panel';panel.dir='ltr';
+  const headings=document.createElement('div');headings.className='pv-grid pv-head';
+  ['','מאות','עשרות','יחידות'].forEach(x=>{const c=document.createElement('b');c.textContent=x;headings.appendChild(c)});panel.appendChild(headings);
+  const makeRow=(label,values,cls)=>{const row=document.createElement('div');row.className='pv-grid '+cls;const title=document.createElement('strong');title.textContent=label;row.appendChild(title);values.forEach((n,i)=>{const cell=document.createElement('div');cell.className='pv-cell';const count=document.createElement('b');count.textContent=n;cell.appendChild(count);cell.appendChild(blockColumn(n,['hundreds','tens','ones'][i]));row.appendChild(cell)});return row};
+  const upper=makeRow('למעלה',state,'pv-top');const lower=makeRow('להחסיר',[Math.floor(bottom/100),Math.floor(bottom%100/10),bottom%10],'pv-bottom');panel.append(upper,lower);root.appendChild(panel);
+  const caption=document.createElement('div');caption.className='pv-caption';caption.textContent='למעלה: הכמות שיש לנו. למטה: הכמות שצריך להחסיר. כחול = מאות, ירוק = עשרות, צהוב = יחידות.';root.appendChild(caption);
+  const help=document.createElement('button');help.type='button';help.className='pv-help';help.textContent='הַרְאִי לִי אֵיךְ מְמִירִים';root.appendChild(help);
+  const guide=document.createElement('div');guide.className='pv-guide';guide.hidden=true;root.appendChild(guide);
+  const explain=document.createElement('p');guide.appendChild(explain);
+  const controls=document.createElement('div');controls.className='pv-controls';guide.appendChild(controls);
+  const next=document.createElement('button');next.type='button';next.textContent='הַשָּׁלָב הַבָּא';controls.appendChild(next);
+  const reset=document.createElement('button');reset.type='button';reset.textContent='הַתְחָלָה מֵחָדָשׁ';controls.appendChild(reset);
+  const target=[Math.floor(bottom/100),Math.floor(bottom%100/10),bottom%10];
+  let steps=[],values=[...state];
+  for(let place=2;place>=0;place--){
+   if(values[place]<target[place]){
+    let donor=place-1;while(donor>=0&&values[donor]===0)donor--;
+    if(donor<0)break;
+    for(let j=donor;j<place;j++){values[j]--;values[j+1]+=10;steps.push({values:[...values],message:j===0?'מְמִירִים מֵאָה אַחַת לְעֶשֶׂר עֲשָׂרוֹת.':'מְמִירִים עֲשָׂרָה אַחַת לְעֶשֶׂר יְחִידוֹת.'})}
+   }
+   values[place]-=target[place];steps.push({values:[...values],message:`מְחַסְּרִים ${target[place]} ${['מֵאוֹת','עֲשָׂרוֹת','יְחִידוֹת'][place]} וְרוֹאִים מָה נִשְׁאַר.`});
+  }
+  steps.push({values:[...values],message:`סִיַּמְנוּ! הַתְּשׁוּבָה הִיא ${top-bottom}.`});
+  function paint(){const shown=phase===0?[Math.floor(top/100),Math.floor(top%100/10),top%10]:steps[phase-1].values;const updated=makeRow('נשאר',shown,'pv-top');panel.querySelector('.pv-top').replaceWith(updated);updated.classList.add('pv-current');explain.textContent=phase===0?'מַתְחִילִים מִצַּד הַיְּחִידוֹת. אִם אֵין מַסְפִּיק, מְמִירִים.':steps[phase-1].message;next.disabled=phase>=steps.length;next.textContent=phase>=steps.length?'סִיַּמְנוּ':'הַשָּׁלָב הַבָּא';}
+  help.onclick=()=>{guide.hidden=!guide.hidden;help.textContent=guide.hidden?'הַרְאִי לִי אֵיךְ מְמִירִים':'הַסְתִּירִי הֶסְבֵּר';if(!guide.hidden)paint()};
+  next.onclick=()=>{phase=Math.min(phase+1,steps.length);paint()};reset.onclick=()=>{phase=0;paint()};root.style.display='block';return;
+ }
+ if(q.op==='÷'&&Number.isInteger(q.a)&&Number.isInteger(q.b)&&q.a>0&&q.b>0&&q.b<=12&&q.a<=120&&q.a%q.b===0){
+  const groups=document.createElement('div');groups.className='pv-division';
+  const intro=document.createElement('p');intro.textContent=`מְחַלְּקִים ${q.a} קֻבִּיּוֹת בְּשָׁוֶה לְ־${q.b} קְבוּצוֹת.`;groups.appendChild(intro);
+  const grid=document.createElement('div');grid.className='pv-div-grid';groups.appendChild(grid);
+  const holders=[];for(let i=0;i<q.b;i++){const box=document.createElement('div');box.className='pv-div-group';const title=document.createElement('b');title.textContent=`קְבוּצָה ${i+1}`;const cubes=document.createElement('div');cubes.className='pv-div-cubes';box.append(title,cubes);grid.appendChild(box);holders.push(cubes)}
+  let distributed=0;const msg=document.createElement('p');groups.appendChild(msg);const button=document.createElement('button');button.type='button';button.className='pv-help';button.textContent='חַלְּקִי סִיבוּב נוֹסָף';groups.appendChild(button);
+  const paint=()=>{holders.forEach((box,i)=>{box.innerHTML='';const count=Math.floor(distributed/q.b)+(i<distributed%q.b?1:0);for(let j=0;j<count;j++)box.appendChild(makeBlock('ones'))});msg.textContent=distributed===q.a?`כָּל קְבוּצָה קִבְּלָה ${q.a/q.b} קֻבִּיּוֹת.`:`חִלַּקְנוּ ${distributed} מִתּוֹךְ ${q.a} קֻבִּיּוֹת.`;button.textContent=distributed===q.a?'הַתְחָלָה מֵחָדָשׁ':'חַלְּקִי סִיבוּב נוֹסָף'};
+  button.onclick=()=>{distributed=distributed===q.a?0:Math.min(q.a,distributed+q.b);paint()};paint();root.appendChild(groups);root.style.display='block';return;
+ }
+ if(q.type==='money'||q.type==='compare'||q.type==='geometry')return;
+ const a=Number(q.a),b=Number(q.b);if(!Number.isInteger(a)||!Number.isInteger(b)||a<1||b<1||a>10||b>10||q.type)return;
+ if(q.op!=='×'&&q.op!=='x'&&q.op!=='+')return;
+ const total=q.op==='+'?a+b:a*b;if(total>80)return;const scene=document.createElement('div');scene.className='cube-groups';const groups=q.op==='+'?2:a;const per=q.op==='+'?0:b;
+ for(let g=0;g<groups;g++){const row=document.createElement('div');row.className='cube-group';for(let j=0;j<(q.op==='+'?(g===0?a:b):per);j++){const cube=document.createElement('span');cube.className='math-cube';row.appendChild(cube)}scene.appendChild(row)}root.appendChild(scene);root.style.display='block';
+}
 function renderQuestion(){
  locked=false;current=questions[qi];document.getElementById("progressText").textContent=`שאלה ${qi+1} מתוך ${questions.length}`;document.getElementById("sessionScore").textContent="⭐ "+sessionStars;document.getElementById("progressBar").style.width=(qi/questions.length*100)+"%";
  let toy=TOYS[(qi+selectedTable)%TOYS.length];document.getElementById("questionMascot").textContent=THEME_INFO[selectedTheme].mascots[qi%THEME_INFO[selectedTheme].mascots.length];document.getElementById("questionText").textContent=current.prompt||`${current.a} ${current.op} ${current.b} = ?`;
